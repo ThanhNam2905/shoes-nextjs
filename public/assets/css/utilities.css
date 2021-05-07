@@ -1,0 +1,10 @@
+/* About Content */
+.about-content:hover img {
+    @apply -rotate-90;
+}
+
+/* Dropdown  */
+.dropdown-a:hover .dropdown-block {
+    @apply flex;
+}
+
