@@ -45,10 +45,6 @@ export default function ProductContent({ product }: ProductType) {
                         <p className="col-span-1">{product.gender}</p>
                     </div>
                     <div className="grid grid-cols-2 border-b border-gray-300 py-3 text-15">
-                        <h5 className="col-span-1 font-semibold">Màu sắc</h5>
-                        <p className="col-span-1">{product.colors}</p>
-                    </div>
-                    <div className="grid grid-cols-2 border-b border-gray-300 py-3 text-15">
                         <h5 className="col-span-1 font-semibold">Chất liệu</h5>
                         <p className="col-span-1">{product.material}</p>
                     </div>

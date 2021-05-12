@@ -9,6 +9,7 @@ import { ScrollToTopBtn } from "../../shared/utilities/scrollToTop/scrollToTop";
 import Dialog from "../../shared/utilities/dialog/dialog";
 import { useEffect, useState } from "react";
 import Head from "next/head";
+import { MdClose } from "react-icons/md";
 
 export function HomePage() {
 
@@ -24,7 +25,6 @@ export function HomePage() {
 
     useEffect(() => {
         const timer = setTimeout(() => {
-            // console.log("Dialog");
             openModal();
         }, 1500)
     
@@ -37,7 +37,10 @@ export function HomePage() {
                 <title>Home Page</title>
             </Head>
 
-            <Dialog showModal={showModal} closeModal={closeModal}>
+            <Dialog showModal={showModal} 
+                    closeModal={closeModal} 
+                    icon={<MdClose className="mt-0.5 ml-1"/>}
+                    className="w-2/4 animate-slide-up fixed top-36 left-1/4 z-50 bg-white py-20 px-20 text-center">
                 <h2 className="uppercase text-3xl font-semibold tracking-wide text-red-600">NEWSLETTER</h2>
                 <p className="text-gray-700 text-15 my-10">Enter your email address to subscribe our notification of our new post & features by email.</p>
                 <div className="flex items-center justify-center mb-7">

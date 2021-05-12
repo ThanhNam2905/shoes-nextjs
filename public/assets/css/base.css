@@ -137,7 +137,7 @@ a {
     @apply outline-none;
 }
 
-.btn--update-cart {
+.btn--update-cart, .btn--back {
     @apply rounded-sm;
     @apply normal-case;
     @apply font-medium;
@@ -148,6 +148,7 @@ a {
     @apply border-red-600;
     @apply text-red-600;
 }
+
 .btn--apply {
     @apply border-0;
     @apply bg-gray-300;
