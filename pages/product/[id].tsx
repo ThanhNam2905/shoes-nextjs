@@ -6,7 +6,7 @@ import { getData } from "../../utils/fetchData";
 export async function getServerSideProps({params: {id}}) {
 
     const res = await getData(`product/${id}`);
-    // console.log(res);
+    
     return {
         props: { productDetail: res.product }, // will be passed to the page component as props
     }

@@ -35,10 +35,6 @@ const ProductSchema = new mongoose.Schema(
             type: String,
             require: true,
         },
-        colors: {
-            type: String,
-            require: true,
-        },
         gender: {
             type: String,
             require: true,
@@ -75,11 +71,15 @@ const ProductSchema = new mongoose.Schema(
             type: Number,
             default: 0,
         },
+        sold: {
+            type: Number,
+            default: 0,
+        },
         created_at:{ type: Date },
         updated_at:{ type: Date, default: Date.now },
     },
     { timestamps: true }
 )
 
-let Dataset = mongoose.models.products || mongoose.model('product', ProductSchema);
-export default Dataset;
+let Dataset = mongoose.models.product || mongoose.model('product', ProductSchema)
+export default Dataset
