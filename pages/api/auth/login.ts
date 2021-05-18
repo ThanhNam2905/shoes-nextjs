@@ -1,6 +1,5 @@
 import connectDB from '../../../utils/connectDB';
 import Users from '../../../models/UserModel';
-import validate from '../../../utils/validate';
 import bcrypt from 'bcrypt';
 import { createAccessToken, createRefreshToken } from '../../../utils/generateToken';
 
@@ -17,11 +16,6 @@ export default async (request, response) => {
 const login = async(req, res) => {
     try {
         const { email, password } = req.body;
-
-        // const errorMsg = validate(email, password);
-        // if(errorMsg) {
-        //     return res.status(400).json({err: errorMsg});
-        // }
         
         // Check this user does not exists
         const user = await Users.findOne({ email })
@@ -45,6 +39,7 @@ const login = async(req, res) => {
             user: {
                 username: user.username,
                 email: user.email,
+                phone: user.phone,
                 role: user.role,
                 avatar: user.avatar,
                 root: user.root,

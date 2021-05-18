@@ -1,5 +1,6 @@
 const  baseURL = process.env.BASE_URL;
 
+
 export const getData = async (url, token?) => {
     const res = await fetch(`${baseURL}/api/${url}`, {
         method: "GET",
@@ -54,7 +55,7 @@ export const patchData = async (url, post, token?) => {
     return data;
 }
 
-export const deleteData = async (url, post, token?) => {
+export const deleteData = async (url, token?) => {
     const res = await fetch(`${baseURL}/api/${url}`, {
         method: "DELETE",
         headers: {
