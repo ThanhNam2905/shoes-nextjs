@@ -15,9 +15,9 @@ export default async (request, response) => {
 
 const register = async(req, res) => {
     try {
-        const { username, email, phone, address, password, confirm_password } = req.body;
+        const { username, email, phone, password, confirm_password } = req.body;
 
-        const errorMsg = validate(username, email, phone, address, password, confirm_password);
+        const errorMsg = validate(username, email, phone, password, confirm_password);
         if(errorMsg) {
             return res.status(400).json({err: errorMsg});
         }
@@ -34,12 +34,10 @@ const register = async(req, res) => {
         const newUser = new Users({ 
             username, 
             email, 
-            phone, 
-            address, 
             password: passwordHash, 
-            confirm_password 
+            confirm_password,
+            phone
         });
-        // console.log("-----> ", newUser);
         await newUser.save();
         res.json({msg: "Bạn đã đăng ký tài khoản thành công"});
 

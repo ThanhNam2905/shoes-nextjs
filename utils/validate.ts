@@ -1,6 +1,6 @@
 
-const validate = (username, email, phone, address, password, confirm_password) => {
-    if(!username || !email || !phone || !address || !password) {
+const validate = (username, email, phone, password, confirm_password) => {
+    if(!username || !email || !phone || !password || !confirm_password) {
         return "Vui lòng điền vào đầy đủ thông tin";
     }
     if(!validateEmail(email)) {
