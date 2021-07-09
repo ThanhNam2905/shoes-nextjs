@@ -6,7 +6,6 @@ import { useToasts } from 'react-toast-notifications';
 import { postData } from '../../../utils/fetchData';
 import { useRouter } from "next/router";
 import { DataContext } from "../../../store/GlobalState";
-
 interface RegisterType {
     username?: string;
     email?: string;
@@ -70,28 +69,61 @@ export default function RegisterPage({
                 <div className="absolute z-20 top-24 left-1/2 transform -translate-x-1/2 text-24 font-semibold bg-white px-12 py-3 rounded-md shadow-2xl ring-2 ring-gray-100 ring-opacity-10 capitalize">Đăng ký</div>
                 <div className="w-1/3 bg-white mx-auto rounded-xl shadow-xl ring-8 ring-gray-100 ring-opacity-10 p-8">
                     <form method="POST" onSubmit={handlerSubmit_Register}>
-                        <div className="flex flex-col mb-4 w-full mt-8">
-                            <label className="text-15 text-left mb-2">Họ và tên <span className="text-red-600">*</span></label>
-                            <input type="text" id="username" name="username" value={userData.username} onChange={handlerChangeInput} className="border border-gray-300 py-2 rounded px-3  focus:ring-1 focus:ring-green-400 focus:border-transparent" placeholder="Họ tên hiển thị" />
+                        <div className="mt-8">
+                            <h4>Họ và tên <span className="text-red-600 ml-1">*</span></h4>
+                            <div className="relative mb-4 w-full h-12 mt-2">
+                                <input  type="text" name="username" id="username"
+                                        placeholder=" "
+                                        value={userData.username} onChange={handlerChangeInput} 
+                                        className="form__input absolute top-0 left-0 border-2 focus:border-green-400 border-gray-300 w-full h-full outline-none rounded px-3" 
+                                        />
+                                <label className="form__label absolute left-3 top-3 text-15 px-2 cursor-text font-semibold text-gray-500 bg-white">Username...</label>
+                            </div>
                         </div>
-                        <div className="flex flex-col mb-4 w-full">
-                            <label className="text-15 text-left mb-2">Địa chỉ E-Mail <span className="text-red-600">*</span></label>
-                            <input type="email" id="email" name="email" value={userData.email} onChange={handlerChangeInput} className="border border-gray-300 py-2 rounded px-3  focus:ring-1 focus:ring-green-400 focus:border-transparent" placeholder="Địa chỉ E-Mail" />
+                        <div className="mt-8">
+                            <h4>Địa chỉ Email <span className="text-red-600 ml-1">*</span></h4>
+                            <div className="relative mb-4 w-full h-12 mt-2">
+                                <input  type="email" name="email" id="email"
+                                        placeholder=" "
+                                        value={userData.email} onChange={handlerChangeInput} 
+                                        className="form__input absolute top-0 left-0 border-2 focus:border-green-400 border-gray-300 w-full h-full outline-none rounded px-3" 
+                                        />
+                                <label className="form__label absolute left-3 top-3 text-15 px-2 cursor-text font-semibold text-gray-500 bg-white">Email...</label>
+                            </div>
                         </div>
-                        <div className="flex flex-col mb-4 w-full">
-                            <label className="text-15 text-left mb-2">Số Điện Thoại <span className="text-red-600">*</span></label>
-                            <input type="text" id="phone" name="phone" value={userData.phone} onChange={handlerChangeInput} className="border border-gray-300 py-2 rounded px-3  focus:ring-1 focus:ring-green-400 focus:border-transparent" placeholder="Điện Thoại" />
+                        <div className="mt-8">
+                            <h4>Số Điện Thoại <span className="text-red-600 ml-1">*</span></h4>
+                            <div className="relative mb-4 w-full h-12 mt-2">
+                                <input  type="text" name="phone" id="phone"
+                                        placeholder=" "
+                                        value={userData.phone} onChange={handlerChangeInput} 
+                                        className="form__input absolute top-0 left-0 border-2 focus:border-green-400 border-gray-300 w-full h-full outline-none rounded px-3" 
+                                        />
+                                <label className="form__label absolute left-3 top-3 text-15 px-2 cursor-text font-semibold text-gray-500 bg-white">Number phone...</label>
+                            </div>
                         </div>
-
-                        <div className="flex flex-col mb-4 w-full">
-                            <label className="text-15 text-left mb-2">Mật Khẩu <span className="text-red-600">*</span></label>
-                            <input type="password" id="password" name="password" value={userData.password} onChange={handlerChangeInput} className="border border-gray-300 py-2 rounded px-3  focus:ring-1 focus:ring-green-400 focus:border-transparent" placeholder="Mật Khẩu" />
+                        <div className="mt-8">
+                            <h4>Mật Khẩu <span className="text-red-600 ml-1">*</span></h4>
+                            <div className="relative mb-4 w-full h-12 mt-2">
+                                <input  type="password" name="password" id="password"
+                                        placeholder=" "
+                                        value={userData.password} onChange={handlerChangeInput} 
+                                        className="form__input absolute top-0 left-0 border-2 focus:border-green-400 border-gray-300 w-full h-full outline-none rounded px-3" 
+                                        />
+                                <label className="form__label absolute left-3 top-3 text-15 px-2 cursor-text font-semibold text-gray-500 bg-white">Password...</label>
+                            </div>
                         </div>
-                        <div className="flex flex-col mb-4 w-full">
-                            <label className="text-15 text-left mb-2">Nhập lại Mật Khẩu <span className="text-red-600">*</span></label>
-                            <input type="password" id="confirm_password" name="confirm_password" value={userData.confirm_password} onChange={handlerChangeInput} className="border border-gray-300 py-2 rounded px-3  focus:ring-1 focus:ring-green-400 focus:border-transparent" placeholder="Nhập lại Mật Khẩu" />
+                        <div className="mt-8">
+                            <h4>Nhập lại Mật Khẩu <span className="text-red-600 ml-1">*</span></h4>
+                            <div className="relative mb-4 w-full h-12 mt-2">
+                                <input  type="password" name="confirm_password" id="confirm_password"
+                                        placeholder=" "
+                                        value={userData.confirm_password} onChange={handlerChangeInput} 
+                                        className="form__input absolute top-0 left-0 border-2 focus:border-green-400 border-gray-300 w-full h-full outline-none rounded px-3" 
+                                        />
+                                <label className="form__label absolute left-3 top-3 text-15 px-2 cursor-text font-semibold text-gray-500 bg-white">Confirm password...</label>
+                            </div>
                         </div>
-
                         <div className="flex flex-col items-center mb-6 w-full">
                             <input type="submit" value="Đăng ký" className="btn w-full text-white bg-red-600 hover:bg-gray-900 px-5 tracking-wider py-2 mt-2.5 rounded" />
                             <p className="text-gray-500 text-15 mt-4">Nếu bạn đã đăng ký tài khoản, vui lòng đăng nhập <Link href="/login"><a className="text-red-600 hover:underline font-semibold">Tại Đây.</a></Link></p>

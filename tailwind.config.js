@@ -38,6 +38,7 @@ module.exports = {
       '19': '4.6rem',
       '19.5': '4.8rem',
       '1/5': '20%',
+      '1/5': '20%',
     },
     extend: {
       colors: {
@@ -137,8 +138,8 @@ module.exports = {
           '100%': { left: 0 }
         },
         slideRightToLeft: {
-          '0%': { left: 0 },
-          '100%': { left: '-100%' }
+          '0%': { right: '-100%' },
+          '100%': { right: 0 }
         }
       },
       animation: {

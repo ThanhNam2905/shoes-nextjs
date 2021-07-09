@@ -3,8 +3,14 @@
     @apply -rotate-90;
 }
 
-/* Dropdown  */
-.dropdown-a:hover .dropdown-block {
-    @apply flex;
+/* Form Input Text */
+.form__label {
+    transition: top 200ms ease-in, left 200ms ease-in, font-size 200ms ease-in;
 }
 
+.form__input:focus ~ .form__label,
+.form__input:not(:placeholder-shown).form__input:not(:focus) ~ .form__label {
+    @apply -top-2;
+    @apply text-12;
+    @apply left-3;
+}

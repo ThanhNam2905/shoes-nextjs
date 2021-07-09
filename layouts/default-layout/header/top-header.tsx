@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { FaUserCircle } from "react-icons/fa";
 import { useRouter } from 'next/router';
-import { useContext, useEffect, useRef, Fragment } from "react";
+import { useContext, useEffect, useRef, Fragment, useState } from "react";
 import { DataContext } from "../../../store/GlobalState";
 import { BiChevronDown } from "react-icons/bi";
 import { Menu, Transition } from '@headlessui/react';
@@ -21,6 +21,7 @@ export default function TopHeader(props) {
       localStorage.removeItem('auth-login');
       dispatch({ type: 'AUTH', payload: {}});
       addToast("Đăng xuất thành công", { appearance: "success"});
+      router.replace('/login');
     }
     
     return (
@@ -28,13 +29,14 @@ export default function TopHeader(props) {
             <div className=" hidden md:block bg-gray-200 w-full h-11 px-14 text-14">
                 <ul className="flex items-center justify-end space-x-6 h-full">
                     <li>
-                        <a href="#" className="border-r-2 border-gray-300 pr-3">Hotline: <span className="font-semibold hover:text-red-600 hover:underline">1800.0080</span></a>
+                        <span className="text-gray-800 hover: border-r-2 border-gray-300 pr-3">Hotline: <span className="font-semibold hover:text-red-600 hover:underline cursor-pointer">1800.0080</span></span>
                     </li>
+                    
 
                     {   Object.keys(auth).length > 0 ? (
                       <Menu as="div" className="relative inline-block">
                         <div>
-                          <Menu.Button className="flex items-center justify-center py-2 text-sm font-semibold rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+                          <Menu.Button className="flex items-center justify-center py-2 text-sm font-semibold rounded-md hover:text-red-600 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
                             <img src={auth.user.avatar} alt={auth.user.avatar}  className="w-7 object-contain mr-1"/>
                             <span>{ auth.user.username }</span>
                             <BiChevronDown
@@ -52,12 +54,12 @@ export default function TopHeader(props) {
                           leaveFrom="transform opacity-100 scale-100"
                           leaveTo="transform opacity-0 scale-95"
                         >
-                          <Menu.Items className="absolute z-100 text-14 font-semibold -right-1 whitespace-nowrap px-3 py-2 -mt-1 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-2 ring-blue-500 ring-opacity-5 focus:outline-none">
+                          <Menu.Items className="absolute z-100 text-14  font-semibold -right-1 whitespace-nowrap px-3 py-2 -mt-1 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-2 ring-blue-500 ring-opacity-5 focus:outline-none">
                             <div className="py-3">
                               <Menu.Item>
                                 {({ active }) => (
                                   <a
-                                  className={`${active && 'bg-blue-200'} py-1.5 px-2 rounded`}
+                                  className={`${active && 'bg-blue-200'} text-gray-800 hover:text-gray-800 py-1.5 px-2 rounded`}
                                   href="/account-settings"
                                 >
                                   Thông tin tài khoản
@@ -69,7 +71,7 @@ export default function TopHeader(props) {
                               <Menu.Item>
                                 {({ active }) => (
                                   <a
-                                  className={`${active && 'bg-blue-200'} py-1.5 px-2 rounded`}
+                                  className={`${active && 'bg-blue-200'} text-gray-800 hover:text-gray-800 py-1.5 px-2 rounded`}
                                   href="/account-settings"
                                 >
                                   Lịch sử đơn hàng
@@ -81,7 +83,7 @@ export default function TopHeader(props) {
                               <Menu.Item>
                                 {({ active }) => (
                                   <a
-                                  className={`${active && 'bg-blue-200'} py-1.5 px-2 rounded`}
+                                  className={`${active && 'bg-blue-200'} text-gray-800 hover:text-gray-800 py-1.5 px-2 rounded`}
                                   href="/account-settings"
                                 >
                                   Thông báo
@@ -93,7 +95,7 @@ export default function TopHeader(props) {
                               <Menu.Item>
                                 {({ active }) => (
                                   <button
-                                    className={`${active && 'bg-blue-200'} py-1.5 px-2 rounded`}
+                                    className={`${active && 'bg-blue-200'} py-1.5 px-2 rounded font-semibold`}
                                     onClick={() => handlerLogout()}
                                   >
                                     Đăng xuất

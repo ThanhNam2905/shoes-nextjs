@@ -11,6 +11,6 @@ export const addToCart = (product, cart) => {
 }
 
 export const deleteItemCart = (data, id, type) => {
-    const newData = data.filter(item => item.productId !== id);
+    const newData = data.filter(item => item.productIdCart !== id);
     return ({ type, payload: newData });
 }

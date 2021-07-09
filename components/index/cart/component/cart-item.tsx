@@ -29,7 +29,6 @@ export default function CartItem({ item, cart }: PropsType) {
         setShowModal(false);
     }
     
-
     const { state, dispatch } = useContext(DataContext);
     const { modal } = state;
 
@@ -37,12 +36,12 @@ export default function CartItem({ item, cart }: PropsType) {
         openModal();
         dispatch({ 
             type: 'ADD_MODAL',
-            payload: { data: cart, productId: item.productId, productName: item.productName }
+            payload: { data: cart, productIdCart: item.productIdCart, productName: item.productName }
         })
     }
     
     const handlerDeleteItemCart = () => {
-        dispatch(deleteItemCart(modal.data, modal.productId, 'ADD_CART'));
+        dispatch(deleteItemCart(modal.data, modal.productIdCart, 'ADD_CART'));
         closeModal();
     }
     
@@ -55,14 +54,14 @@ export default function CartItem({ item, cart }: PropsType) {
                 <div className="col-span-4">
                     <h5 className="text-16 font-medium">
                         <Link href={`/product/${item.productId}`}>
-                            <a className="hover:text-red-600 hover:underline capitalize">{item.productName}</a>
+                            <a className="hover:text-red-600 hover:underline capitalize text-gray-800">{item.productName}</a>
                         </Link>
                     </h5>
                     <p className="text-12 my-2">Size: {item.size}</p>
                     <p className="text-14">Price: {new Intl.NumberFormat('de-DE').format(item.productPrice)} ₫</p>
                 </div>
                 <div className="col-span-1">
-                    <ProductQuantity quantity={item.qty}  inStock={item.inStock} cart={cart} productId={item.productId}/>
+                    <ProductQuantity quantity={item.qty}  inStock={item.inStock} cart={cart} productIdCart={item.productIdCart}/>
                 </div>
                 <div className="col-span-2 text-right">
                     <p>{new Intl.NumberFormat('de-DE').format(productPrice)} ₫</p>
