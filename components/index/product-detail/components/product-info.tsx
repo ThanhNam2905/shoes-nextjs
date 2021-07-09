@@ -7,6 +7,7 @@ import { DataContext } from "../../../../store/GlobalState";
 import { addToCart } from "../../../../store/Actions";
 import ProductQuantity from "../../../shared/product/product-quantity";
 SwiperCore.use([Navigation, Pagination]); // install Swiper modules
+import { useToasts } from "react-toast-notifications";
 
 
 type PropsType = {
@@ -17,6 +18,7 @@ export default function ProductInfo({ product }: PropsType) {
 
     const { state, dispatch } = useContext(DataContext);
     const { cart } = state;
+    const { addToast } = useToasts();
 
     const productPrice = product.discount > 0 ? product.price * (100 - product.discount) / 100 : product.price;
     const [quantity, setQuantity] = useState(1);
@@ -40,6 +42,7 @@ export default function ProductInfo({ product }: PropsType) {
     const AddProductToCart = () => {
         dispatch(addToCart({
             productId : product._id, 
+            productIdCart : Math.floor(Math.random() * Date.now()).toString(), 
             productName : product.name, 
             productPrice : productPrice, 
             productImage : product.images[0], 
@@ -47,6 +50,7 @@ export default function ProductInfo({ product }: PropsType) {
             size: activeState.activeSize,
             inStock: product.inStock
         }, cart))
+        addToast("Thêm sản phẩm vào giỏ hàng thành công", { appearance: "success"});
     }
 
     return (

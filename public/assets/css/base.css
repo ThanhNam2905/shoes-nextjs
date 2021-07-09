@@ -1,55 +1,59 @@
 /* Body, Html */
 html, body {
-    @apply text-gray-800;
+    color: #000000d9;
 }
 
 /* Tag <a> link */
 a {
     @apply transition;
-    @apply ease-linear;
-    @apply duration-200;
+    transition-timing-function: linear;
+    transition-duration: 200ms;
+    color: #000000d9;
+}
+p {
+    margin-bottom: 0px !important;
 }
 
 /* Banner */
 .banner:hover .banner-test {
-    @apply opacity-100;
+    opacity: 1;
     @apply transition;
-    @apply ease-linear;
-    @apply duration-500;
+    transition-timing-function: linear;
+    transition-duration: 500ms;
 }
 
 /* ------- Product-Card -------- */
 
 .product__card:hover .product__img-main {
-    @apply hidden;
+    display: none;
     
 }
 .product__card:hover .product__img-extra {
-    @apply block;
+    display: block;
     
 }
 .product__card:hover .product__info {
-    @apply hidden;
+    display: none;
     
 }
 .product__card:hover .product__icon {
-    @apply flex;
+    display: flex;
     
 }
 .product__card:hover .btn__add-to-cart {
-    @apply flex;
+    display: flex
 }
 
 /* ------- Base CSS Buttons, Tags -------- */
 .btn {
-    @apply uppercase;     
-    @apply border;
-    @apply font-bold;
+    text-transform: uppercase;   
+    border-width: 1px;
+    font-weight: 700;
     @apply rounded-full;
     @apply transition;
     @apply ease-linear;
     @apply duration-200;
-    @apply cursor-pointer;
+    cursor: pointer;
 }
 
 .btn--login, .btn--signup {
