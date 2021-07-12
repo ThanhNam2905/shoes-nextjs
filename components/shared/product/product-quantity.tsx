@@ -7,11 +7,11 @@ type PropsType = {
     quantity?: number;
     setQuantity?: Function;
     cart?: any;
-    productIdCart?: string;
+    idCart?: string;
     inStock?: number;
 }
 
-export default function ProductQuantity({ quantity, setQuantity, cart, productIdCart, inStock }: PropsType) {
+export default function ProductQuantity({ quantity, setQuantity, cart, idCart, inStock }: PropsType) {
 
     const { dispatch } = useContext(DataContext);
 
@@ -30,7 +30,7 @@ export default function ProductQuantity({ quantity, setQuantity, cart, productId
     const decrease = (data, id) => {
         const newCart = [...data];
         newCart.forEach(item => {
-            if(item.productIdCart === id) {
+            if(item.idCart === id) {
                 item.qty -= 1;
             }
         })
@@ -39,7 +39,7 @@ export default function ProductQuantity({ quantity, setQuantity, cart, productId
     const increase = (data, id) => {
         const newCart = [...data];
         newCart.forEach(item => {
-            if(item.productIdCart === id) {
+            if(item.idCart === id) {
                 item.qty += 1;
             }
         })
@@ -49,17 +49,17 @@ export default function ProductQuantity({ quantity, setQuantity, cart, productId
     return (
         <>  
             {   
-                (cart && productIdCart) ? (
+                (cart && idCart) ? (
                     <div className="flex items-center justify-between border border-gray-400 text-gray-400 rounded-sm px-2 py-1">
                         <button className="focus:outline-none" 
                                 disabled={quantity === 1 ? true : false }
-                                onClick={() => dispatch(decrease(cart, productIdCart))}>
+                                onClick={() => dispatch(decrease(cart, idCart))}>
                             <FaMinus className="text-12 hover:text-gray-700 " />
                         </button>
                         <input type="text" className="w-4 text-gray-800" value={quantity} onChange={(e) => handleSetQuantity2(Number(e.target.value))} />
                         <button className="focus:outline-none" 
                                 disabled={quantity === inStock? true : false }
-                                onClick={() => dispatch(increase(cart, productIdCart))}>
+                                onClick={() => dispatch(increase(cart, idCart))}>
                             <FaPlus className="text-12 hover:text-gray-700 " />
                         </button>
                     </div>

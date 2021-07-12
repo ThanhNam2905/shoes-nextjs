@@ -44,7 +44,7 @@ export default function ProductPage(props) {
             
 
             {/* Product Content */}
-            <div className="px-14 my-10">
+            <div className="px-14 mt-8 mb-10">
                 {/* Product Sort */}
                 <div className="border border-gray-300 text-15 rounded-md flex items-center justify-between px-6 h-14">
                     <div className="flex items-center space-x-3">

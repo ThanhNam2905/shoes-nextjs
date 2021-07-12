@@ -22,29 +22,30 @@ export default function Breadcrumbs({ breadcrumbs, title }: PropsType) {
             }
 
             {/* Breadcrumb */}
-            <div className="px-14 py-4 text-left tracking-wider">
-                <ul className="flex font-normal text-16 mt-1">
-                    {breadcrumbs?.length > 0 && 
-                        breadcrumbs.map((breadcrumb, index) => (
-                            <li key={index}>
-                                { breadcrumb.href ? (
-                                    <>
-                                        <Link href={breadcrumb.href}>
-                                            <a className="hover:text-red-600">{breadcrumb.label}</a>
-                                        </Link>
-                                        <span className="px-1">/</span>
-                                    </>
-                                    ) : (
-                                        <a className="text-red-600">
-                                            <span>{breadcrumb.label}</span>
-                                        </a>
-                                    )
-                                }
-                            </li>
-                        ))
-                    }
-                </ul>
-            </div>
+            { breadcrumbs?.length > 0 && 
+                <div className="px-14 py-4 text-left tracking-wider">
+                    <ul className="flex font-normal text-16 mt-1">
+                        {   breadcrumbs.map((breadcrumb, index) => (
+                                <li key={index}>
+                                    { breadcrumb.href ? (
+                                        <>
+                                            <Link href={breadcrumb.href}>
+                                                <a className="hover:text-red-600">{breadcrumb.label}</a>
+                                            </Link>
+                                            <span className="px-1">/</span>
+                                        </>
+                                        ) : (
+                                            <a className="text-red-600">
+                                                <span>{breadcrumb.label}</span>
+                                            </a>
+                                        )
+                                    }
+                                </li>
+                            ))
+                        }
+                    </ul>
+                </div>
+            } 
         </>
     )
 }

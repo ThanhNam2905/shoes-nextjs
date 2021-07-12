@@ -10,7 +10,7 @@ export default function ProductItem(props) {
     return (
         <>
             <Link href={`/product/${product._id}`}>
-                <a className="text-14 relative border border-gray-300 hover:border-blue-500 rounded-md overflow-hidden">
+                <a className="text-14 relative border border-gray-300 hover:border-blue-400 rounded-md overflow-hidden">
                     {
                         product.tagProduct?.includes("New") &&
                             <div className="tag-new absolute z-10 top-3 left-2 w-16">New</div>
@@ -19,7 +19,7 @@ export default function ProductItem(props) {
                     { 
                         product.tagProduct?.includes("Sales") &&
                             <div className="tag-sale absolute z-10 top-2 right-2 w-10 ">
-                            <p className="text-14 flex items-center justify-center">{product.discount}%</p>
+                            <p className="text-14 flex items-center justify-center mb-0">{product.discount}%</p>
                         </div>
                     }
                     
@@ -32,8 +32,8 @@ export default function ProductItem(props) {
                         {
                             product.discount > 0 ? (
                                 <div>
-                                    <p className="mt-1 text-gray-800 font-semibold">Sale Price: <span className="text-blue-500 text-18 font-medium">{new Intl.NumberFormat('de-DE').format(priceSale)} đ</span></p>
-                                    <p className="mt-1 text-gray-800 font-semibold">Price: <span className="text-16 font-medium line-through">{new Intl.NumberFormat('de-DE').format(product.price)} đ</span></p>
+                                    <p className="mt-1 mb-0 text-gray-800 font-semibold">Sale Price: <span className="text-blue-500 text-18 font-medium">{new Intl.NumberFormat('de-DE').format(priceSale)} đ</span></p>
+                                    <p className="mt-1 mb-0 text-gray-800 font-semibold">Price: <span className="text-16 font-medium line-through">{new Intl.NumberFormat('de-DE').format(product.price)} đ</span></p>
                                 </div>
                                
                             ) : (

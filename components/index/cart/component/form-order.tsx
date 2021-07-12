@@ -5,6 +5,8 @@ import { Form, Input, Button, Radio, message } from 'antd';
 import { useContext, useEffect, useState } from 'react';
 import { DataContext } from '../../../../store/GlobalState';
 import PaypalBtn from './PaypalBtn';
+import { postData } from '../../../../utils/fetchData';
+import { getData } from "../../../../utils/fetchData";
 
 type PropsType = {
     [x: string]: any;
@@ -35,7 +37,7 @@ export default function FormOrder({ totalPrice }: PropsType) {
     const [wards, setWards] = useState("");
 
     const { state, dispatch } = useContext(DataContext);
-    const { cart } = state;
+    const { cart, auth } = state;
     
 
     const handlerChangeCity = async (value) => {
@@ -55,23 +57,73 @@ export default function FormOrder({ totalPrice }: PropsType) {
         numberPhone: "",
         payment: 0,
         cart: {},
-        total: 0
+        totalPrice: 0
     });
+
+    // const [callBack, setCallBack] = useState(false);
+    // useEffect(() => {
+    //     const cartLocalStorage = JSON.parse(localStorage.getItem("cartItem"));
+        
+    //     if(cartLocalStorage && cartLocalStorage.length > 0) {     
+    //         let newArr = [];
+    //         console.log(cartLocalStorage);
+            
+    //         const updateCart = async() => {
+    //             for(const item of cartLocalStorage) {
+    //                 const res = await getData(`product/${item._id}`);
+    //                 // console.log(res.product);
+                    
+    //                 const { _id, name, price, images, sizes, inStock, sold } = res.product;
+                    
+    //                 if(inStock > 0) {
+    //                     newArr.push({
+    //                         _id, 
+    //                         name: item.productName, 
+    //                         images: item.productImges, 
+    //                         price, 
+    //                         sizes, 
+    //                         inStock, 
+    //                         sold, 
+    //                         quantity: item.qty > inStock ? 1 : item.qty
+                            
+    //                     })
+    //                 }
+    //             }
+    //             dispatch({ type: "ADD_CART", payload: newArr })
+    //         }
+    //         updateCart();
+    //     }
+        
+    // }, [callBack]);
     
-    const checkOutCart = (values) => {
-        console.log('Success:', values.city);
-        const { city, districts, wards, street, phone, payment_checkout } = values;
-        setCartPayment({
-            address: `${street}, ${wards}, ${districts}, ${city}`,
+    const checkOutPayment = async (values) => {
+        //console.log('Success:', values.city);
+        const { city, districts, wards, street, phone, payment } = values;
+        const address = `${street}, ${wards}, ${districts}, ${city}`;
+        await setCartPayment({
+            address: address,
             numberPhone: phone,
-            payment: payment_checkout,
+            payment: payment,
             cart: cart,
-            total: totalPrice
+            totalPrice: totalPrice
         });
-        const hide = message.loading("Bạn đã đặt hàng thành công", 0);
-        setTimeout(hide, 4000);
+
+        postData('order', { address, phone, payment, cart, totalPrice}, auth.token)
+        .then(res => {
+            if(res.error) {
+                message.error(res.error);
+            }
+            // clear product_items in cart
+            dispatch({ type: "ADD_CART", payload: []}); 
+            
+            // show message order success
+            const hide = message.success("Bạn đã đặt hàng thành công, vui lòng xác nhận đơn hàng của bạn", 0);
+            setTimeout(hide, 4000);
+        })
+
+        
     };
-    console.log(cartPayment);
+    
     
 
     const onFinishFailed = (errorInfo) => {
@@ -97,7 +149,7 @@ export default function FormOrder({ totalPrice }: PropsType) {
                 initialValues={{
                     remember: true,
                 }}
-                onFinish={checkOutCart}
+                onFinish={checkOutPayment}
                 onFinishFailed={onFinishFailed}
             >
                 <Form.Item
@@ -230,7 +282,7 @@ export default function FormOrder({ totalPrice }: PropsType) {
                 <Form.Item
                     style={{ width: "100%" }}
                     label="Phương thức thanh toán"
-                    name="payment_checkout"
+                    name="payment"
                     rules={[
                         {
                             required: true,
