@@ -41,15 +41,17 @@ export default function ProductInfo({ product }: PropsType) {
 
     const AddProductToCart = () => {
         dispatch(addToCart({
-            productId : product._id, 
-            productIdCart : Math.floor(Math.random() * Date.now()).toString(), 
+            _id : product._id, 
+            idCart : Math.floor(Math.random() * Date.now()).toString(), 
             productName : product.name, 
             productPrice : productPrice, 
             productImage : product.images[0], 
             qty: quantity, 
             size: activeState.activeSize,
-            inStock: product.inStock
+            inStock: product.inStock,
+            sold: product.sold
         }, cart))
+        // dispatch(addToCart(product, cart));
         addToast("Thêm sản phẩm vào giỏ hàng thành công", { appearance: "success"});
     }
 

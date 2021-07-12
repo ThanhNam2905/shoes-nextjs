@@ -23,7 +23,7 @@
     "**/*.ts",
     "**/*.tsx",
     "pages/_app.js"
-, "store/GlobalState.js", "store/Reducers.js", "store/Actions.js", "store/GlobalState.js"  ],
+, "store/GlobalState.js", "store/Reducers.js", "store/Actions.js", "store/GlobalState.js", "components/index/cart/component/PaypalBtn.js"  ],
   "exclude": [
     "node_modules"
   ]

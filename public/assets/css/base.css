@@ -10,9 +10,9 @@ a {
     transition-duration: 200ms;
     color: #000000d9;
 }
-p {
+/* p {
     margin-bottom: 0px !important;
-}
+} */
 
 /* Banner */
 .banner:hover .banner-test {

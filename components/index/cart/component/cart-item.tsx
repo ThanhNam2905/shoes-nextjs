@@ -6,6 +6,7 @@ import ProductQuantity from "../../../shared/product/product-quantity";
 import Dialog from "../../../shared/utilities/dialog/dialog";
 import { DataContext } from "../../../../store/GlobalState";
 import { deleteItemCart } from '../../../../store/Actions';
+import { message } from 'antd';
 
 type PropsType = {
     [x: string]: any;
@@ -27,6 +28,7 @@ export default function CartItem({ item, cart }: PropsType) {
     }
     const closeModal = () => {
         setShowModal(false);
+        
     }
     
     const { state, dispatch } = useContext(DataContext);
@@ -36,14 +38,17 @@ export default function CartItem({ item, cart }: PropsType) {
         openModal();
         dispatch({ 
             type: 'ADD_MODAL',
-            payload: { data: cart, productIdCart: item.productIdCart, productName: item.productName }
+            payload: { data: cart, idCart: item.idCart, productName: item.productName }
         })
     }
     
     const handlerDeleteItemCart = () => {
-        dispatch(deleteItemCart(modal.data, modal.productIdCart, 'ADD_CART'));
+        dispatch(deleteItemCart(modal.data, modal.idCart, 'ADD_CART'));
         closeModal();
+        message.success("Delete sản phẩm thành công");
     }
+    console.log(item);
+    
     
     return (
         <> 
@@ -53,7 +58,7 @@ export default function CartItem({ item, cart }: PropsType) {
                 </div>
                 <div className="col-span-4">
                     <h5 className="text-16 font-medium">
-                        <Link href={`/product/${item.productId}`}>
+                        <Link href={`/product/${item._id}`}>
                             <a className="hover:text-red-600 hover:underline capitalize text-gray-800">{item.productName}</a>
                         </Link>
                     </h5>
@@ -61,7 +66,7 @@ export default function CartItem({ item, cart }: PropsType) {
                     <p className="text-14">Price: {new Intl.NumberFormat('de-DE').format(item.productPrice)} ₫</p>
                 </div>
                 <div className="col-span-1">
-                    <ProductQuantity quantity={item.qty}  inStock={item.inStock} cart={cart} productIdCart={item.productIdCart}/>
+                    <ProductQuantity quantity={item.qty}  inStock={item.inStock} cart={cart} idCart={item.idCart}/>
                 </div>
                 <div className="col-span-2 text-right">
                     <p>{new Intl.NumberFormat('de-DE').format(productPrice)} ₫</p>
@@ -93,7 +98,6 @@ export default function CartItem({ item, cart }: PropsType) {
                         Delete
                     </button>
                 </div>
-                
             </Dialog>
         </>
     )
