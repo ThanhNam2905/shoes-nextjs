@@ -1,0 +1,62 @@
+/* About Content */
+.about-content:hover img {
+    /* @apply -rotate-90; */
+    --tw-rotate: -90deg;
+}
+
+/* Form Input Text */
+.form__label {
+    transition: top 200ms ease-in, left 200ms ease-in, font-size 200ms ease-in;
+}
+
+.form__input:focus ~ .form__label,
+.form__input:not(:placeholder-shown).form__input:not(:focus) ~ .form__label {
+    top: -0.5rem;
+    font-size: 12px;
+    left: 0.75rem
+}
+
+
+/* ------------  Customize CSS Ant Design  --------------------*/
+
+/* CSS Antd Image */
+.ant-image {
+    margin-top: 1.2rem;
+}
+
+.ant-image-img {
+    border-radius: 50%;
+    border: 2px solid #969292;
+    --tw-shadow: 0 20px 25px -5px rgba(25, 24, 24, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.ant-btn.ant-btn-dashed {
+    display: flex;
+    align-items: center;
+}
+
+.ant-upload-picture-card-wrapper {
+    display: flex !important;
+    justify-content: center;
+    margin-top: 1.8rem;
+}
+
+.ant-upload.ant-upload-select.ant-upload-select-picture-card {
+    height: 0px;
+    border: 0px;
+}
+/* CSS Antd Loading */
+.ant-btn-loading-icon {
+    margin-top: -8px;
+}
+/* CSS Antd Icon anticon-check-circle*/
+.ant-form-item-children-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.ant-message-custom-content.ant-message-success {
+    display: flex;
+    align-items: center;
+}

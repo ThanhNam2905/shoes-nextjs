@@ -1,7 +1,7 @@
 import React from 'react'
 import '../public/assets/css/style.css';
 import '../public/assets/css/base.css';
-import '../public/assets/css/utilities.css';
+import '../public/assets/css/style-ant-design.css';
 import { DataProvider } from '../store/GlobalState';
 import { ToastProvider } from 'react-toast-notifications';
 

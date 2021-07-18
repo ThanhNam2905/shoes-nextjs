@@ -101,44 +101,39 @@ a {
     @apply text-yellow-600;
 }
 
-.icon__add-to-cart:hover .alt--cart {
-    @apply block;
-    @apply transition;
-    @apply ease-in;
-    @apply duration-500;
-}
-
 .continue--shopping:hover .block--continue {
-    @apply block;
-    @apply animate-slide-left;
+    display: block;
+    animation: slideLeftToRight 0.4s ease-in forwards;
 }
 
 .btn--add-to-cart {
-    @apply border-0;
+    border-width: 0px;
     background-color: #f51c1c;
-    @apply text-white;
-    @apply py-2;
-    @apply px-6;
+    color: white;
+    padding: 8px 24px; 
 }
 .btn--add-to-cart:hover {
-    @apply bg-gray-900;
+    --tw-bg-opacity: 1;
+    background-color: rgba(17, 24, 39, var(--tw-bg-opacity));
 }
 .btn--favourite {
-    @apply text-yellow-700;
-    @apply border-0;
+    --tw-text-opacity: 1;
+    color: rgba(180, 83, 9, var(--tw-text-opacity));
+    border-width: 1px;
     padding: 11px;
-    @apply rounded-full;
-    @apply border;
-    @apply border-yellow-700;
+    border-radius: 9999px;
+    --tw-border-opacity: 1;
+    border-color: rgba(180, 83, 9, var(--tw-border-opacity));
 }
 .btn--favourite:hover {
-    @apply text-white;
+    color: white;
     background-color: #f51c1c;
     border-color: #f51c1c;
 }
 
 .btn:focus, input:focus {
-    @apply outline-none;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
 }
 
 .btn--update-cart, .btn--back {

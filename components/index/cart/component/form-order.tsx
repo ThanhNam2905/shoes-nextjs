@@ -119,11 +119,8 @@ export default function FormOrder({ totalPrice }: PropsType) {
             // show message order success
             const hide = message.success("Bạn đã đặt hàng thành công, vui lòng xác nhận đơn hàng của bạn", 0);
             setTimeout(hide, 4000);
-        })
-
-        
+        })  
     };
-    
     
 
     const onFinishFailed = (errorInfo) => {
