@@ -2,10 +2,10 @@ import Link from "next/link";
 import Head from "next/head";
 import { useState, useEffect, useContext } from "react";
 import validate from '../../../utils/validate';
-import { useToasts } from 'react-toast-notifications';
 import { postData } from '../../../utils/fetchData';
 import { useRouter } from "next/router";
 import { DataContext } from "../../../store/GlobalState";
+import { message } from 'antd'; // Ant Design
 interface RegisterType {
     username?: string;
     email?: string;
@@ -23,7 +23,6 @@ export default function RegisterPage({
     }: RegisterType) {
 
     const [userData, setUserData] = useState({ username, email, phone, password, confirm_password});
-    const { addToast } = useToasts();
     const { state } = useContext(DataContext);
     const { auth } = state;
     const router = useRouter();
@@ -40,15 +39,15 @@ export default function RegisterPage({
         const errorMsg = validate(username, email, phone, password, confirm_password);
 
         if(errorMsg) {
-            addToast(errorMsg, { appearance: "error" });
+            message.error(errorMsg);
         }
         else {
             const res = await postData('auth/register', userData);
             if(res.err) {
-                addToast(res.err, { appearance: "error" });
+                message.error(res.err);
             }
             else {
-                addToast(res.msg, { appearance: "success"});
+                message.success(res.msg);
             }
         }
     }

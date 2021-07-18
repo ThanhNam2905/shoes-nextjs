@@ -1,11 +1,12 @@
 import Link from "next/link";
 import Head from "next/head";
 import { useContext, useEffect, useState } from "react";
-import { useToasts } from "react-toast-notifications";
 import { postData } from "../../../utils/fetchData";
 import Cookie from 'js-cookie';
 import { DataContext } from "../../../store/GlobalState";
 import { useRouter } from "next/router";
+//Ant Design
+import { message } from 'antd';
 
 export default function LoginPage(props) {
 
@@ -14,13 +15,7 @@ export default function LoginPage(props) {
     const { email, password } = userData;
     const { state, dispatch } = useContext(DataContext);
     const { auth } = state;
-    const { addToast } = useToasts();
     const router = useRouter();
-
-    const [breadcrumbs, setBreadcrumbs] = useState([
-        { href: "/home", label: "Trang chủ"},
-        { label: "Đăng nhập"}
-    ]);
 
     const handlerChangeInput = (e) => {
         const { name, value } = e.target;
@@ -29,14 +24,12 @@ export default function LoginPage(props) {
 
     const handlerSubmit_Login = async (e) => {
         e.preventDefault();
-        
         const res = await postData('auth/login', userData);
-        
         if(res.err) {
-            addToast(res.err, { appearance: "error"});
+            message.error(res.err);
         }
         else {
-            addToast(res.msg, { appearance: "success"});
+            message.success(res.msg)
         }
 
         dispatch({ type: 'AUTH', payload: {
@@ -63,7 +56,6 @@ export default function LoginPage(props) {
                 <title>Trang Đăng Nhập</title>
             </Head>
             
-
             {/* Login Content */}
             <div className="relative w-full py-32 bg-gradient-to-tr from-blue-500 via-purple-500 to-pink-500 overflow-hidden">
                 <div className="absolute z-20 top-24 left-1/2 transform -translate-x-1/2 text-24 font-semibold bg-white px-12 py-3 rounded-md shadow-2xl ring-2 ring-gray-100 ring-opacity-10 capitalize">Đăng nhập</div>
