@@ -6,7 +6,7 @@ import { useContext, useEffect, useState } from 'react';
 import { DataContext } from '../../../../store/GlobalState';
 import PaypalBtn from './PaypalBtn';
 import { postData } from '../../../../utils/fetchData';
-import { getData } from "../../../../utils/fetchData";
+
 
 type PropsType = {
     [x: string]: any;
@@ -37,7 +37,7 @@ export default function FormOrder({ totalPrice }: PropsType) {
     const [wards, setWards] = useState("");
 
     const { state, dispatch } = useContext(DataContext);
-    const { cart, auth } = state;
+    const { cart, auth, orders } = state;
     
 
     const handlerChangeCity = async (value) => {
@@ -54,7 +54,7 @@ export default function FormOrder({ totalPrice }: PropsType) {
     const [payment, setPayment] = useState(false);
     const [cartPayment, setCartPayment] = useState({
         address: "",
-        numberPhone: "",
+        phone: "",
         payment: 0,
         cart: {},
         totalPrice: 0
@@ -97,12 +97,11 @@ export default function FormOrder({ totalPrice }: PropsType) {
     // }, [callBack]);
     
     const checkOutPayment = async (values) => {
-        //console.log('Success:', values.city);
         const { city, districts, wards, street, phone, payment } = values;
         const address = `${street}, ${wards}, ${districts}, ${city}`;
         await setCartPayment({
             address: address,
-            numberPhone: phone,
+            phone: phone,
             payment: payment,
             cart: cart,
             totalPrice: totalPrice
@@ -114,17 +113,19 @@ export default function FormOrder({ totalPrice }: PropsType) {
                 message.error(res.error);
             }
             // clear product_items in cart
-            dispatch({ type: "ADD_CART", payload: []}); 
+            dispatch({ type: "ADD_CART", payload: []});
+
+            const newOrder = {
+                ...res.newOrder,
+                user: auth.user
+            }
+            
+            dispatch({ type: "ADD_ORDERS", payload: [...orders, newOrder]})
             
             // show message order success
-            const hide = message.success("Bạn đã đặt hàng thành công, vui lòng xác nhận đơn hàng của bạn", 0);
+            const hide = message.success(res.message, 0);
             setTimeout(hide, 4000);
         })  
-    };
-    
-
-    const onFinishFailed = (errorInfo) => {
-        // console.log('Failed:', errorInfo);
     };
 
     const [form] = Form.useForm();
@@ -147,7 +148,6 @@ export default function FormOrder({ totalPrice }: PropsType) {
                     remember: true,
                 }}
                 onFinish={checkOutPayment}
-                onFinishFailed={onFinishFailed}
             >
                 <Form.Item
                     style={{ width: "100%" }}
@@ -159,6 +159,8 @@ export default function FormOrder({ totalPrice }: PropsType) {
                             message: 'Vui lòng chọn tỉnh hoặc thành phố bạn ở !',
                         },
                     ]}
+                    hasFeedback
+                    
                 >
                     <Select
                         showSearch
@@ -188,6 +190,7 @@ export default function FormOrder({ totalPrice }: PropsType) {
                             message: 'Vui lòng chọn huyện hoặc quận bạn ở !',
                         },
                     ]}
+                    hasFeedback
                 >
                     <Select
                         showSearch
@@ -220,6 +223,7 @@ export default function FormOrder({ totalPrice }: PropsType) {
                             message: 'Vui lòng chọn xã hoặc phường bạn ở !',
                         },
                     ]}
+                    hasFeedback
                 >
                     <Select
                         showSearch
@@ -272,6 +276,7 @@ export default function FormOrder({ totalPrice }: PropsType) {
                             message: 'Vui lòng ghi số điện thoại của bạn !',
                         },
                     ]}
+                    hasFeedback
                 >
                     <Input type="text" min={0} max={10} placeholder="Number Phone"/>
                 </Form.Item>
@@ -289,7 +294,7 @@ export default function FormOrder({ totalPrice }: PropsType) {
                 >   
                     {   payment ? <PaypalBtn    total={totalPrice} 
                                                 address={cartPayment.address}
-                                                numberPhone={cartPayment.numberPhone}
+                                                phone={cartPayment.phone}
                                                 cart={cartPayment.cart}
                                                 state={state}
                                                 dispatch={dispatch}/> 

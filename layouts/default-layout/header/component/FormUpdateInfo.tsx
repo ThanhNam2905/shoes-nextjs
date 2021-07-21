@@ -35,7 +35,6 @@ export default function FormUpdateInfo({ avatar, username, auth, dispatch, data,
     }
 
     const updateUsername = () => {
-        
         patchData('user/updateUsername', { username }, auth.token)
         .then(res => {
             if(res.error) {

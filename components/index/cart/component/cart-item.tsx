@@ -47,8 +47,7 @@ export default function CartItem({ item, cart }: PropsType) {
         closeModal();
         message.success("Delete sản phẩm thành công");
     }
-    console.log(item);
-    
+    // console.log(item);
     
     return (
         <> 

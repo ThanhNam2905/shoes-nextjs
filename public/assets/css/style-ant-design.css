@@ -19,38 +19,39 @@
 
 /* ------------  Customize CSS Ant Design  --------------------*/
 
-/* CSS Antd Image */
+/* Customize CSS Antd Component Image */
 .ant-image {
     margin-top: 1.2rem;
 }
-
 .ant-image-img {
     border-radius: 50%;
     border: 2px solid #969292;
     --tw-shadow: 0 20px 25px -5px rgba(25, 24, 24, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
-
-.ant-btn.ant-btn-dashed {
-    display: flex;
-    align-items: center;
+.ant-image-preview-img {
+    position: absolute;
+    top: 0;
+    left: 25%;
+    padding: 20px;
+    border-radius: 25px;
 }
-
 .ant-upload-picture-card-wrapper {
     display: flex !important;
     justify-content: center;
     margin-top: 1.8rem;
 }
-
 .ant-upload.ant-upload-select.ant-upload-select-picture-card {
     height: 0px;
     border: 0px;
 }
-/* CSS Antd Loading */
+
+/* Customize CSS Antd Component Loading */
 .ant-btn-loading-icon {
     margin-top: -8px;
 }
-/* CSS Antd Icon anticon-check-circle*/
+
+/* Customize CSS Antd Component Icon anticon-check-circle*/
 .ant-form-item-children-icon {
     display: flex;
     align-items: center;
@@ -60,3 +61,22 @@
     display: flex;
     align-items: center;
 }
+
+/* Customize CSS Antd Component Tabs*/
+.ant-tabs-tab-btn {
+    font-size: 17px;
+    font-weight: 400;
+}
+
+/* Customize CSS Antd Component Button*/
+.ant-btn.ant-btn-default.btn__shopping {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    border-radius: 5px;
+}
+.ant-btn.ant-btn-dashed {
+    display: flex;
+    align-items: center;
+}
+

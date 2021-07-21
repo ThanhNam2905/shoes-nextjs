@@ -11,7 +11,7 @@ import CartPayment from "./component/cart-payment";
 
 export default function CartPage(props) {
 
-    const { state, dispatch } = useContext(DataContext);
+    const { state } = useContext(DataContext);
     const { cart } = state;
     const [totalPrice, setTotalPrice] = useState(0);
     

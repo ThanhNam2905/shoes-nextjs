@@ -1,17 +1,17 @@
 import { useEffect, useRef } from "react";
 
-type PropsType = {
-    [x: string]: any;
-    total: number;
-    address: string;
-    numberPhone: string;
-    cart: any;
-    state: any;
-    dispatch: any;
-}
+// type PropsType = {
+//     [x: string]: any;
+//     total: number;
+//     address: string;
+//     phone: string;
+//     cart: any;
+//     state: any;
+//     dispatch: any;
+// }
 
 
-export default function PaypalBtn({ total, address, numberPhone, cart, state, dispatch }: PropsType) {
+export default function PaypalBtn({ total, address, phone, cart, state, dispatch }) {
 
     const refPayPalBtn = useRef();
     const { auth } = state;

@@ -1,6 +1,6 @@
 // React Icon
 import {
-  AiOutlineCamera, AiOutlineClose, AiOutlineMail,
+  AiOutlineClose, AiOutlineMail,
   AiOutlineShoppingCart, AiOutlineBell, AiOutlineLogout,
   AiOutlineUser, AiOutlineEdit
 } from "react-icons/ai";
@@ -136,7 +136,9 @@ export default function TopHeader(props) {
 
                     <div className="grid grid-cols-8 w-full px-8 mt-5">
                       <i className="col-span-1"><AiOutlineShoppingCart className="text-20 mt-0.5" /></i>
-                      <span className="col-span-7 text-16 font-semibold">Lịch sử đơn hàng</span>
+                      <Link href="/order">
+                        <a className="col-span-7 text-16 font-semibold text-gray-900 hover:underline" onClick={() => handlerCloseDialog()}>Lịch sử đơn hàng</a>
+                      </Link>  
                     </div>
 
                     <div className="grid grid-cols-8 w-full px-8 mt-5">

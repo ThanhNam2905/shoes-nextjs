@@ -11,18 +11,39 @@ export default async (req, res) => {
             await createOrder(req, res);
             break;
         }
+        case "GET": {
+            await getOrders(req, res);
+            break;
+        }
+    }
+}
+
+const getOrders = async (req, res) => {
+    try {
+        const result = await Auth(req, res);
+
+        let orders;
+        if(result.role === "user") {
+            orders = await Orders.find({user: result.id}).populate("user", "-password");
+        }
+        else {
+            orders = await Orders.find().populate("user", "-password");
+        }
+        res.json({orders});
+    } catch (error) {
+        return res.status(500).json({error: error.message});
     }
 }
 
 const createOrder = async (req, res) => {
     try {
         const result = await Auth(req, res);
-        const { address, numberPhone, payment, cart, totalPrice } = req.body;
+        const { address, phone, payment, cart, totalPrice } = req.body;
 
         const newOrder = new Orders({
             user: result.id,
             address,
-            numberPhone,
+            phone,
             payment,
             cart,
             totalPrice
