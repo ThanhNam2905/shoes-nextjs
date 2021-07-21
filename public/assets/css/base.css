@@ -46,21 +46,19 @@ a {
 
 /* ------- Base CSS Buttons, Tags -------- */
 .btn {
-    text-transform: uppercase;   
+    text-transform: capitalize;   
     border-width: 1px;
-    font-weight: 700;
-    @apply rounded-full;
-    @apply transition;
-    @apply ease-linear;
-    @apply duration-200;
+    font-weight: 500;
+    border-radius: 6px;
+    transition: all linear 300ms;
     cursor: pointer;
 }
 
 .btn--login, .btn--signup {
-    @apply uppercase        ;
-    @apply font-bold;
-    @apply text-white;
-    @apply text-16;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: white;
+    font-size: 16px;
     @apply border;
     @apply border-red-600;
     @apply h-10;
@@ -97,8 +95,10 @@ a {
     @apply py-3;
 }
 .btn.btn--size.active {
-    @apply border-yellow-600;
-    @apply text-yellow-600;
+    --tw-border-opacity: 1;
+    border-color: rgba(59, 130, 246, var(--tw-border-opacity));
+    --tw-text-opacity: 1;
+    color: rgba(59, 130, 246, var(--tw-text-opacity));
 }
 
 .continue--shopping:hover .block--continue {
@@ -110,12 +110,10 @@ a {
     border-width: 0px;
     background-color: #f51c1c;
     color: white;
-    padding: 8px 24px; 
+    padding: 12px 26px; 
+    font-size: 17px;
 }
-.btn--add-to-cart:hover {
-    --tw-bg-opacity: 1;
-    background-color: rgba(17, 24, 39, var(--tw-bg-opacity));
-}
+
 .btn--favourite {
     --tw-text-opacity: 1;
     color: rgba(180, 83, 9, var(--tw-text-opacity));

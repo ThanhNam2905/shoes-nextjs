@@ -1,21 +1,21 @@
 import { createContext, useEffect, useReducer } from 'react';
 import reducers from './Reducers';
 import { getData } from '../utils/fetchData';
+import { message } from 'antd';
 
 export const DataContext = createContext();
 
 export const DataProvider = ({children}) => {
 
-    const initialState = { notify: {}, auth: {}, cart: [], modal: {} };
+    const initialState = { auth: {}, cart: [], modal: {}, orders: [] };
     const [ state, dispatch ] = useReducer(reducers, initialState);
-    const { cart } = state;
+    const { cart, auth } = state;
 
     // Function Login
     useEffect(() => {
         const authLogin = localStorage.getItem('auth-login');
         if(authLogin) {
             getData('auth/accessToken').then(res => {
-                // console.log(res);
                 if(res.err) {
                     return localStorage.removeItem('auth-login');
                 }
@@ -41,6 +41,19 @@ export const DataProvider = ({children}) => {
     useEffect(() => {
         localStorage.setItem("cartItem", JSON.stringify(cart))
     }, [cart]);
+
+    useEffect(() => {
+        if(auth.token) {
+            getData('order', auth.token)
+            .then(res => {
+                // console.log(res);
+                if(res.error) {
+                    message.error(res.error);
+                }
+                dispatch({ type: "ADD_ORDERS", payload: res.orders});
+            })
+        }
+    }, [auth.token]);
 
     return (
         <DataContext.Provider value={{state, dispatch}}>

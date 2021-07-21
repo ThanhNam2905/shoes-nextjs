@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
-import { FaStar, FaRegHeart } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
+import { AiOutlineShoppingCart } from "react-icons/ai"; // React Icon
 import { Swiper, SwiperSlide } from 'swiper/react'; // Import Swiper React components
 import 'swiper/swiper-bundle.min.css'; // Import Swiper styles
 import SwiperCore, { Navigation, Pagination } from 'swiper'; // import Swiper core and required modules
@@ -10,6 +11,7 @@ SwiperCore.use([Navigation, Pagination]); // install Swiper modules
 import { message } from 'antd'; // Ant Design
 
 type PropsType = {
+    [x: string]: any;
     product: any
 }
 
@@ -33,7 +35,7 @@ export default function ProductInfo({ product }: PropsType) {
             return " btn btn--size active";
         }
         else {
-            return " btn btn--size hover:border-gray-500";
+            return " btn btn--size hover:border-blue-500 hover:text-blue-500";
         }
     }
 
@@ -87,19 +89,21 @@ export default function ProductInfo({ product }: PropsType) {
 
                 {
                     product.inStock === product.sold ? (
-                        <p className="text-18 my-5 text-red-600">Sản phẩm này đã hết hàng</p>
+                        <p className="text-18 my-5 text-red-600 mb-0">Sản phẩm này đã hết hàng</p>
                     ) : (
                         <>
                             <div className="w-7/12">
                                 <div className="my-3 text-18 flex items-center justify-between">
                                     {
                                         activeState.activeSize === null ? (
-                                            <p className="font-semibold">Vui lòng chọn Size</p>
+                                            <p className="font-semibold mb-0">Vui lòng chọn Size</p>
                                         ) : (
-                                            <p>Size: {activeState.activeSize}</p>
+                                            <p className="font-semibold mb-0">Size: 
+                                                <span className="text-blue-500 text-20 ml-1.5">{activeState.activeSize}</span>
+                                            </p>
                                         )
                                     }
-                                    <a href="#" className="hover:text-red-600">Hướng dẫn chọn Size</a>
+                                    <button className="hover:text-red-600">Hướng dẫn chọn Size</button>
                                 </div>
                                 <div className="grid grid-cols-4 gap-4">
                                     {
@@ -113,15 +117,18 @@ export default function ProductInfo({ product }: PropsType) {
                                     }
                                 </div>
                             </div>
-                            <div className="flex items-center my-6">
-                                <p className="text-18 font-semibold mr-5">Số lượng: </p>
+                            <div className="flex items-center justify-between bg-gray-100 rounded-lg my-10 py-8 px-8">
+                                <div className="flex items-center">
+                                    <p className="text-18 font-semibold mb-0 mr-5">Số lượng: </p>
+                                    <ProductQuantity quantity={quantity} setQuantity={setQuantity}/>
+                                </div>
                                 
-                                <ProductQuantity quantity={quantity} setQuantity={setQuantity}/>
-                                
-                                <button className="btn btn--add-to-cart mx-8 text-14" 
-                                        onClick={() => AddProductToCart()}>Đặt hàng
+                                <button className="btn btn--add-to-cart mx-8 text-14 flex items-center opacity-80 hover:opacity-100 hover:underline" 
+                                        onClick={() => AddProductToCart()}>
+                                        <AiOutlineShoppingCart className="text-18 mr-2"/>
+                                        <span>Thêm vào giỏ hàng</span>
                                 </button>
-                                <button className="btn flex items-center btn--favourite"><FaRegHeart className="text-18" /></button>
+                                
                             </div>
                         </>
                     )

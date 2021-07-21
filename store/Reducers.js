@@ -2,12 +2,6 @@ import { ACTIONS } from './Actions';
 
 const reducers = (state, action) => {
     switch(action.type) {
-        case ACTIONS.NOTIFY: 
-            return {
-                ...state,
-                notify: action.payload
-            };
-            break;
         case ACTIONS.AUTH:
             return {
                 ...state,
@@ -26,7 +20,12 @@ const reducers = (state, action) => {
                 modal: action.payload
             };
             break;
-            
+        case ACTIONS.ADD_ORDERS: 
+            return {
+                ...state,
+                orders: action.payload
+            };
+            break; 
         default:
             return state;
     }

@@ -14,7 +14,7 @@ const Auth = async (req, res) => {
 
     const user = await Users.findOne({_id: decoded.id});
 
-    return {id: user._id};
+    return {id: user._id, role: user.role, root: user.root};
 }
 
 
