@@ -102,6 +102,7 @@ export default function FormUpdateInfo({ avatar, username, auth, dispatch, data,
         <>
             <div className="group-avatar">
                 <Image
+                    className="img-avatar-customize"
                     width={240}
                     height={240}
                     src={avatar ? URL.createObjectURL(avatar) : auth.user?.avatar} 

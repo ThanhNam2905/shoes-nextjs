@@ -69,8 +69,7 @@ export default function CartPage(props) {
                                     )
                                 }
 
-                                <div className="flex items-start justify-between mt-9 ">
-                                    <button className="btn btn--update-cart">Cập nhật giỏ hàng</button>
+                                <div className="flex items-start justify-end mt-9 ">
                                     <div className="flex flex-col">
                                         <input type="text" className="border-2 rounded text-gray-800 placeholder-gray-500 border-gray-200 px-3 py-3 w-72 focus:border-red-600" placeholder="Mã ưu đãi" />
                                         <button className="btn btn--apply mt-4">Áp dụng</button>

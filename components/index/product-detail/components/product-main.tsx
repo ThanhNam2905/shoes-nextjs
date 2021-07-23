@@ -9,15 +9,15 @@ export default function ProductMain({ product }: PropsType) {
 
     return (
         <>
-            <div className="flex space-x-12 px-14 pt-6 pb-20">
+            <div className="grid grid-cols-10 gap-4 relative px-20 pt-6 pb-20">
                 {/* Product Image */}
-                <div className="w-2/6 ">
+                <div className="col-span-4">
                     <ProductImage product={product}/>
                 </div>
                 
                     
                 {/* Product Info */}
-                <div className="w-3/5">
+                <div className="col-span-6">
                     <ProductInfo product={product}/>
                 </div>
             </div>

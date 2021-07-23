@@ -14,7 +14,7 @@ type PropsType = {
 
 export default function CartPayment({ totalPrice }: PropsType) {
 
-    const { state, dispatch } = useContext(DataContext);
+    const { state } = useContext(DataContext);
     const { auth } = state;
 
     const [showModal, setShowModal] = useState(false);
@@ -54,19 +54,19 @@ export default function CartPayment({ totalPrice }: PropsType) {
 
     return (
         <>
-            <div className="w-3/12 border border-gray-800 py-7 px-7 rounded-sm">
-                <div className="divide-y-2 divide-gray-200">
+            <div className="w-3/12 bg-blue-100 border-2 border-gray-400 py-8 px-7 rounded-sm">
+                <div className="divide-y-2 divide-gray-400">
                     <h5 className="text-24 pb-4 flex items-center font-medium">
                         <MdAttachMoney />
                         Tổng giỏ hàng
                     </h5>
                     <div className="flex items-center justify-between">
                         <p className="uppercase py-5 ">Tạm tính</p>
-                        <p>{new Intl.NumberFormat('de-DE').format(totalPrice)} ₫</p>
+                        <p className="font-semibold text-18">{new Intl.NumberFormat().format(totalPrice)} ₫</p>
                     </div>
                     <div className="flex items-center justify-between">
-                        <p className="uppercase py-5">Tổng</p>
-                        <p>{new Intl.NumberFormat('de-DE').format(totalPrice)} ₫</p>
+                        <p className="uppercase py-5">Tổng tiền</p>
+                        <p className="font-semibold  text-18">{new Intl.NumberFormat().format(totalPrice)} ₫</p>
                     </div>
                 </div>
 

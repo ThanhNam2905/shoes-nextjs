@@ -5,8 +5,8 @@ import { Form, Input, Button, Radio, message } from 'antd';
 import { useContext, useEffect, useState } from 'react';
 import { DataContext } from '../../../../store/GlobalState';
 import PaypalBtn from './PaypalBtn';
-import { postData } from '../../../../utils/fetchData';
-
+import { getData, postData } from '../../../../utils/fetchData';
+import { useRouter } from 'next/router';
 
 type PropsType = {
     [x: string]: any;
@@ -35,10 +35,10 @@ export default function FormOrder({ totalPrice }: PropsType) {
     const [city, setCity] = useState("");
     const [districts, setDistricts] = useState("");
     const [wards, setWards] = useState("");
-
+    const [callback, setCallback] = useState(false);
     const { state, dispatch } = useContext(DataContext);
     const { cart, auth, orders } = state;
-    
+    const router = useRouter();
 
     const handlerChangeCity = async (value) => {
         await setCity(value);
@@ -93,9 +93,9 @@ export default function FormOrder({ totalPrice }: PropsType) {
     //         }
     //         updateCart();
     //     }
-        
     // }, [callBack]);
     
+
     const checkOutPayment = async (values) => {
         const { city, districts, wards, street, phone, payment } = values;
         const address = `${street}, ${wards}, ${districts}, ${city}`;
@@ -106,6 +106,19 @@ export default function FormOrder({ totalPrice }: PropsType) {
             cart: cart,
             totalPrice: totalPrice
         });
+
+        let newCart = [];
+        for(const item of cart) {
+            // console.log(item);
+            const res = await getData(`product/${item._id}`);
+            if(res.product.inStock - item.qty >= 0) {
+                newCart.push(item);
+            }
+        }
+        if(newCart.length < cart.length) {
+            setCallback(!callback);
+            message.error("Sản phẩm bạn chọn đã hết hàng hoặc số lượng không đủ");
+        }
 
         postData('order', { address, phone, payment, cart, totalPrice}, auth.token)
         .then(res => {
@@ -119,12 +132,13 @@ export default function FormOrder({ totalPrice }: PropsType) {
                 ...res.newOrder,
                 user: auth.user
             }
-            
             dispatch({ type: "ADD_ORDERS", payload: [...orders, newOrder]})
-            
+
             // show message order success
             const hide = message.success(res.message, 0);
             setTimeout(hide, 4000);
+
+            return router.push(`/order/${res.newOrder._id}`);
         })  
     };
 

@@ -38,7 +38,7 @@ export default function OrderDetailPage(props) {
         const hours = date.getHours();
         const minutes = date.getMinutes();
 
-        const result = `${hours} giờ ${minutes} phút - ${weekday}, ${day}, ${month}, ${year} `;
+        const result = `${hours} giờ ${minutes} phút - ${weekday}, Ngày ${day}, ${month}, ${year} `;
         return (
             <>
                 <span className="font-medium text-16 text-gray-700">{result}</span>
@@ -64,7 +64,6 @@ export default function OrderDetailPage(props) {
                 </div>
 
                 <div className="w-full mt-8">
-                    
                         {
                             orderDetail.length > 0 &&
                                 orderDetail.map((order, index) => (

@@ -33,10 +33,10 @@ export default function OrderPage(props) {
 
             <Breadcrumbs title="Đơn hàng"/>
 
-            <div className="w-full bg-gray-100 py-9">
-                <div className="w-10/12 mx-auto bg-white border border-gray-300 rounded-md px-8 py-6">
-                    <div className="flex items-center py-4">
-                        <span className="uppercase text-20 font-semibold">Lịch sử mua hàng</span>
+            <div className="w-full bg-gray-100 pt-12 pb-20">
+                <div className="w-10/12 mx-auto bg-white border border-gray-300 rounded-md px-8 pt-6 pb-10">
+                    <div className="flex items-center py-2">
+                        <span className="uppercase text-20 font-semibold bg-blue-600 text-gray-200 py-2 px-5 rounded-md">Lịch sử mua hàng</span>
                     </div>
                     <Tabs defaultActiveKey="1">
                         <TabPane tab="Tất cả" key="1">

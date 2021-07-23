@@ -51,9 +51,9 @@ export default function CartItem({ item, cart }: PropsType) {
     
     return (
         <> 
-            <div className="mt-4 grid grid-cols-10 border-b border-gray-300 py-4 h-40">
+            <div className="mt-4 grid grid-cols-10 border-b border-gray-300 py-4 h-36">
                 <div className="col-span-2">
-                    <img src={item.productImage} alt={item.productImage} className="object-contain w-4/5 max-w-4/5 h-3/5 max-h-4/5" />
+                    <img src={item.productImage.url} alt={item.productImage.url} className="object-contain w-4/5 max-w-4/5 h-3/5 max-h-4/5" />
                 </div>
                 <div className="col-span-4">
                     <h5 className="text-16 font-medium">
@@ -61,17 +61,17 @@ export default function CartItem({ item, cart }: PropsType) {
                             <a className="hover:text-red-600 hover:underline capitalize text-gray-800">{item.productName}</a>
                         </Link>
                     </h5>
-                    <p className="text-12 my-2">Size: {item.size}</p>
-                    <p className="text-14">Price: {new Intl.NumberFormat('de-DE').format(item.productPrice)} ₫</p>
+                    <p className="text-16 my-2">Size: {item.size}</p>
+                    <p className="text-16 ">Price: <span className="text-red-600">{new Intl.NumberFormat().format(item.productPrice)} ₫</span></p>
                 </div>
                 <div className="col-span-1">
                     <ProductQuantity quantity={item.qty}  inStock={item.inStock} cart={cart} idCart={item.idCart}/>
                 </div>
-                <div className="col-span-2 text-right">
-                    <p>{new Intl.NumberFormat('de-DE').format(productPrice)} ₫</p>
+                <div className="col-span-2 text-16 text-center text-red-600">
+                    <p>{new Intl.NumberFormat().format(productPrice)} ₫</p>
                 </div>
                 <div className="col-span-1">
-                    <button className="focus:outline-none flex items-center justify-end w-full text-18 text-red-600 hover:text-green-600"
+                    <button className="focus:outline-none flex items-center justify-end w-full text-16 text-red-600 hover:text-green-600"
                             onClick={() => ClickBtnDeleteItemCart()}>
                         <RiDeleteBinLine />
                         <span>Delete</span>
@@ -87,8 +87,8 @@ export default function CartItem({ item, cart }: PropsType) {
                     <BsQuestionCircle className="text-yellow-600 text-3xl"/>
                 </i>
                 <p className="text-gray-900 text-20 font-semibold">Thông báo</p>
-                <p className="text-gray-700 text-16 mt-3 mb-8">Bạn có chắc muốn xoá sản phẩm này?</p>
-                <div className="flex items-center justify-end border-t border-gray-300 pt-3 px-8 text-15 space-x-3">
+                <p className="text-gray-700 text-16">Bạn có chắc muốn xoá sản phẩm {item.productName}?</p>
+                <div className="flex items-center justify-end border-t border-gray-300 pt-3 px-8 mt-8 text-15 space-x-3">
                     <button className="btn--cancel focus:outline-none hover:text-black transition ease-linear duration-200 font-semibold text-gray-600 px-4 py-1.5" 
                             onClick={() => closeModal()}>Cancel
                     </button>

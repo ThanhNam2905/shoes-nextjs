@@ -28,7 +28,12 @@ const orderSchema = new mongoose.Schema({
     delivered: {
         type: Boolean,
         default: false
-    }
+    },
+    statusPayment: {
+        type: Boolean,
+        default: false
+    },
+    dateOfPayment: Date
 },  {
     timestamps: true
 })
