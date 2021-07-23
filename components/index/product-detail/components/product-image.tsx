@@ -1,9 +1,9 @@
-import ReactImageMagnify from 'react-image-magnify';
-import { Swiper, SwiperSlide } from 'swiper/react'; // Import Swiper React components
-import 'swiper/swiper-bundle.min.css'; // Import Swiper styles
-import SwiperCore, { Navigation, Pagination } from 'swiper'; // import Swiper core and required modules
-SwiperCore.use([Navigation, Pagination]); // install Swiper modules
+
 import { useState } from 'react';
+import { Image } from "antd";
+import Slider from "react-slick";
+import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
+
 type PropsType = {
     product: any
 }
@@ -19,43 +19,47 @@ export default function ProductImage({ product }: PropsType) {
             return " border border-yellow-600 p-0.5 opacity-100";
         }
     }
+    const settings = {
+        customPaging: function(i) {
+            return (
+                <a>
+                    <img src={product.images[i].url} alt={product.images[i].url}/>
+                </a>
+            )
+        },
+        dots: true,
+        dotsClass: "group-array-image",
+        infinite: false,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplaySpeed: 3000,
+        nextArrow: (
+            <div className="">
+                <i className="btn-next-slider flex items-center justify-center"><AiOutlineRight/></i>
+            </div>
+          ),
+        prevArrow: (
+            <div className="">
+                <i className="btn-prev-slider flex items-center justify-center"><AiOutlineLeft/></i>
+            </div>
+        ),
+      };
 
     return (
-        <>     
-            {/* <ReactImageMagnify {...{
-                smallImage: {
-                    alt: product.images[changeImage],
-                    isFluidWidth: true,
-                    src: product.images[changeImage]
-                },
-                largeImage: {
-                    src: "/assets/img/product/nike-sneaker8L.jpg",
-                    width: 1200,
-                    height: 1200
-                }
-            }}
-            /> */}
-
-            <div className="aspect-w-16 aspect-h-9 h-138 ">
-                <img src={`${product.images[changeImage]}`} alt={product.images[changeImage]} className="object-contain w-full max-w-full" />
-            </div>
-            <Swiper
-                className="my-4"
-                spaceBetween={20}
-                slidesPerView={3}
-                navigation
-                loop={false}
-            >
-                {product.images?.length > 0 &&
-                    product.images.map((img, index) => (
-                        <SwiperSlide key={index} className="h-56">
-                            <img src={img} alt={product.images[changeImage]} 
-                                onClick={() => handlerClickImages(index)} 
-                                className={`object-fill  h-36 max-h-36 w-full max-w-full cursor-pointer opacity-60 ${isActive(index)}`} />
-                        </SwiperSlide>
-                    )) 
-                }
-            </Swiper>
+        <>   
+            <div className="group-image-detail overflow-hidden">
+                <Slider {...settings}>
+                    {
+                        product.images.length > 0 &&
+                            product.images.map((img, index) =>(
+                                <div className="image-array-slider" key={index}>
+                                    <Image src={img.url} alt={img.url}/>
+                                </div>
+                            ))
+                    }
+                </Slider>
+            </div>  
         </>
     )
 }

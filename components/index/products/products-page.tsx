@@ -61,7 +61,6 @@ export default function ProductPage(props) {
 
                 <div className="grid grid-cols-4 gap-8 mt-10 mb-20">
                     {/* Product Card */}
-
                     {   
                         products.length > 0 ? (
                             products.map((product) => 

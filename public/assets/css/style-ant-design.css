@@ -20,10 +20,10 @@
 /* ------------  Customize CSS Ant Design  --------------------*/
 
 /* Customize CSS Antd Component Image */
-.ant-image {
+.group-avatar .ant-image {
     margin-top: 1.2rem;
 }
-.ant-image-img {
+.ant-image-img.img-avatar-customize {
     border-radius: 50%;
     border: 2px solid #969292;
     --tw-shadow: 0 20px 25px -5px rgba(25, 24, 24, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
@@ -80,3 +80,96 @@
     align-items: center;
 }
 
+
+
+.image-array-slider {
+	position: relative;
+	height: auto;
+}
+.image-array-slider .ant-image {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+.image-array-slider img {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	border-radius: 4px;
+}
+
+/* CSS Group Image Detail Product */
+.group-image-detail {
+    position: relative;
+    max-width: 470px;
+}
+.group-image-detail .slick-slider .slick-list .slick-track {
+    display: flex;
+    align-items: center;
+}
+.group-array-image {
+	height: auto;
+	display: flex !important;
+	padding: 10px;
+	background: #fdf9ff;
+	align-items: center;
+	border-radius: 8px;
+    margin-bottom: 0px;
+    margin-top: 5px;
+}
+.image-array-slider::selection {
+    background: none;
+}
+.group-array-image > li {
+	cursor: pointer;
+	width: 120px;
+	height: auto;
+	margin: 0 5px;
+}
+.group-array-image > li.slick-active img {
+	border: 2px solid #1c9cea;
+	transform: scale(1.01);
+}
+.group-array-image > li img {
+	position: relative;
+	width: 100%;
+	border-radius: 8px;
+	height: 100%;
+	left: 0;
+	top: 0;
+	transition: 0.3s ease-out;
+}
+.group-image-detail .slick-arrow  i.btn-next-slider,
+.group-image-detail .slick-arrow i.btn-prev-slider {
+    background-color: #fff;
+    position: absolute;
+    top: 38.5%;
+    font-size: 23px;
+    color: #06b4dc;
+    transform: translateY(-38.5%);
+    -webkit-transform: translateY(-38.5%);
+    z-index: 99;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: 2px 2px 5px #ccc;
+    -webkit-box-shadow: 2px 2px 5px #ccc;
+}
+.group-image-detail .slick-arrow i.btn-next-slider {
+    right: 5%;
+    transition: all 0.2s linear;
+}
+.group-image-detail .slick-arrow i.btn-next-slider:hover {
+    right: 4%;
+    border: 1px solid #06b4dc;
+}
+.group-image-detail .slick-arrow i.btn-prev-slider {
+    left: 5%;
+    transition: all 0.2s linear;
+}
+.group-image-detail .slick-arrow i.btn-prev-slider:hover {
+    left: 4%;
+    border: 1px solid #06b4dc;
+}

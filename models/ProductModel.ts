@@ -23,15 +23,23 @@ const ProductSchema = new mongoose.Schema(
             type: String,
             require: true,
         },
+        productType: {
+            type: String,
+            require: true,
+        },
+        images: {
+            type: Array,
+            require: true,
+        },
         sizes: {
             type: Array,
             require: true,
         },
-        productLine: {
+        material: {
             type: String,
             require: true,
         },
-        material: {
+        colors: {
             type: String,
             require: true,
         },
@@ -47,13 +55,13 @@ const ProductSchema = new mongoose.Schema(
             type: String,
             require: true,
         },
-        images: {
-            type: Array,
-            require: true,
+        numberReview: { 
+            type: Number, 
+            default: 0 
         },
-        imagesFeedBack: {
-            type: Array,
-            require: true,
+        rating: { 
+            type: Number, 
+            default: 0 
         },
         checked: {
             type: Boolean,

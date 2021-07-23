@@ -13,13 +13,13 @@ export default function OrderItem({ order }: PropsType) {
 
     return (
         <>  
-            <div className="order__item flex items-center justify-between mt-4 py-3 px-6 border border-gray-300 rounded-md">
+            <div className="order__item flex items-center justify-between mt-4 py-3 px-6 border border-gray-300 rounded-md bg-blue-50">
                 <div>
-                    <p className="font-medium">Mã đơn hàng: <span className="font-bold text-16">{order._id}</span></p>
-                    <p className="font-medium">Tổng sản phẩm: <span className="font-bold text-16">{order.cart.length} sản phẩm</span></p>
-                    <p className="font-medium">Tổng tiền: <span className="font-bold text-16 text-blue-500">{new Intl.NumberFormat('de-DE').format(order.totalPrice)}</span></p>
-                    <p className="font-medium">Trạng thái đơn hàng: <span className="font-bold text-16">{order.delivered ? "Hoàn thành" : "Chờ xác nhận"}</span></p>
-                    <p className="font-medium">Thời gian đặt hàng: { new Date(order.createdAt).toLocaleDateString()}</p>
+                    <p className="font-medium mb-1.5">Mã đơn hàng: <span className="font-bold text-16">{order._id}</span></p>
+                    <p className="font-medium mb-1.5">Tổng sản phẩm: <span className="font-bold text-16 text-gray-500">{order.cart.length} sản phẩm</span></p>
+                    <p className="font-medium mb-1.5">Tổng tiền: <span className="font-bold text-16 text-red-600">{new Intl.NumberFormat('de-DE').format(order.totalPrice)} đ</span></p>
+                    <p className="font-medium mb-1.5">Trạng thái đơn hàng: <span className="font-bold text-16">{order.delivered ? "Hoàn thành" : "Chờ xác nhận"}</span></p>
+                    <p className="font-medium mb-1.5">Thời gian đặt hàng: { new Date(order.createdAt).toLocaleDateString()}</p>
                 </div>
                 <div className="flex items-center space-x-2">
                     <Link href={`/order/${order._id}`}>

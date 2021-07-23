@@ -10,9 +10,9 @@ a {
     transition-duration: 200ms;
     color: #000000d9;
 }
-/* p {
+p, h5 {
     margin-bottom: 0px !important;
-} */
+}
 
 /* Banner */
 .banner:hover .banner-test {
@@ -73,26 +73,32 @@ a {
     @apply bg-red-600;
 }
 .btn--load-more {
-    @apply py-3;
-    @apply mt-16;
-    @apply border;
-    @apply border-red-600;
-    @apply text-red-600;
-    @apply px-8;
+    padding-top: 0.75rem/* 12px */;
+    padding-bottom: 0.75rem/* 12px */;
+    margin-top: 4rem/* 64px */;
+    border-width: 1px;
+    --tw-border-opacity: 1;
+    border-color: rgba(220, 38, 38, var(--tw-border-opacity));
+    --tw-text-opacity: 1;
+    color: rgba(220, 38, 38, var(--tw-text-opacity));
+    padding-left: 2rem/* 32px */;
+    padding-right: 2rem/* 32px */;
 }
 .btn--send {
-    @apply rounded-md;
-    @apply capitalize;
-    @apply font-normal;
+    border-radius: 0.375rem/* 6px */;
+    text-transform: capitalize;
+    font-weight: 400;
 }
 .btn---back-home {
-    @apply rounded-md;
+    border-radius: 0.375rem/* 6px */;
 }
 .btn--size {
-    @apply  rounded-md;
-    @apply border-gray-300;
-    @apply text-gray-600;
-    @apply py-3;
+    border-radius: 0.375rem/* 6px */;
+    border-radius: 0.375rem/* 6px */;
+    --tw-text-opacity: 1;
+    color: rgba(75, 85, 99, var(--tw-text-opacity));
+    padding-top: 0.75rem/* 12px */;
+    padding-bottom: 0.75rem/* 12px */;
 }
 .btn.btn--size.active {
     --tw-border-opacity: 1;
@@ -196,14 +202,6 @@ a {
     @apply transition ;
     @apply ease-linear;
     @apply duration-150;
-}
-.tag-product {
-    background-color: #f51c1c;
-    @apply text-white;
-    @apply inline-block;
-    @apply px-2;
-    @apply py-1;
-    @apply rounded;
 }
 
 /* Button Scroll To Top */

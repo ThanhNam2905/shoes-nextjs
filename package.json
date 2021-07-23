@@ -38,6 +38,7 @@
     "react-icons": "^4.2.0",
     "react-image-magnify": "^2.7.4",
     "react-props": "0.0.3",
+    "react-slick": "^0.28.1",
     "react-use": "^17.2.1",
     "styled-components": "^5.2.3",
     "swiper": "^6.5.3",
