@@ -1,29 +1,48 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { DataContext } from "../../../store/GlobalState";
 import Breadcrumbs from "../../shared/utilities/breadcrumbs/breadcrumbs";
 
 //Ant Design
 import 'antd/dist/antd.css';
-import { Tabs } from 'antd';
-import Head from "next/head";
-import OrderItem from "./component/order-item";
+import { Tabs, notification } from 'antd';
 
+import Head from "next/head";
+import { useRouter } from 'next/router';
+import OrderItem from "./component/order-item";
+import NotFound from "../../shared/utilities/not-found";
 
 export default function OrderPage(props) {
 
     const { state } = useContext(DataContext);
-    const { orders } = state;
+    const { auth, orders } = state;
 
     const { TabPane } = Tabs;
+    const router = useRouter();
 
     // Show All Orders
     const showAllOrder = (orders) => {
         return (
-            orders.map((order, index) => (
-                <OrderItem key={index} order={order}/>
-            ))
+            orders.length > 0 ? (
+                orders.map((order, index) => (
+                    <OrderItem key={index} order={order}/>
+                ))
+            ) : (
+                <NotFound text="Bạn chưa có đơn hàng nào"/>
+            )
+            
         )
     }
+
+    // useEffect(() => {
+    //     if(Object.keys(auth).length === 0) {
+    //         router.replace('/login');
+    //         notification.info({
+    //             message: "Thông báo",
+    //             description: "Vui lòng đăng nhập tài khoản để xem lịch sử đơn hàng",
+    //             duration: 4
+    //         });
+    //     }
+    // }, [auth.token]);
 
     return (
         <>

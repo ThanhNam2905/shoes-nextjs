@@ -87,7 +87,7 @@ export default function CartItem({ item, cart }: PropsType) {
                     <BsQuestionCircle className="text-yellow-600 text-3xl"/>
                 </i>
                 <p className="text-gray-900 text-20 font-semibold">Thông báo</p>
-                <p className="text-gray-700 text-16">Bạn có chắc muốn xoá sản phẩm {item.productName}?</p>
+                <p className="text-gray-700 text-16">Bạn có chắc muốn xoá sản phẩm <span className="font-semibold text-yellow-600">{item.productName}</span> ?</p>
                 <div className="flex items-center justify-end border-t border-gray-300 pt-3 px-8 mt-8 text-15 space-x-3">
                     <button className="btn--cancel focus:outline-none hover:text-black transition ease-linear duration-200 font-semibold text-gray-600 px-4 py-1.5" 
                             onClick={() => closeModal()}>Cancel

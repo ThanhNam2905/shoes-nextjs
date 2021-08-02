@@ -1,0 +1,81 @@
+/* CSS Header Antd Layout Component */
+.header-admin {
+    padding: 0px 0px !important;
+    display: flex;
+    align-items: center;
+    height: 80px !important;
+    background-color: #fff !important;
+}
+.header-admin__logo {
+    border-bottom-width: 2px;
+    border-right-width: 0px;
+    --tw-border-opacity: 1;
+    border-color: rgba(209, 213, 219, var(--tw-border-opacity));
+    --tw-shadow: 0 4px 10px 4px rgb(28 27 27 / 10%), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+.header-admin__option {
+    border-bottom-width: 2px;
+    --tw-border-opacity: 1;
+    border-color: rgba(209, 213, 219, var(--tw-border-opacity));
+}
+
+/* CSS SideBar Antd Layout Component */
+aside.sidebar-admin {
+    width: 20% !important;
+    flex: none !important;
+    max-width: 20% !important;
+    background-color: #fff !important;
+    --tw-shadow: 0 4px 10px 4px rgb(28 27 27 / 10%), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+.ant-collapse-header {
+    transition: all 200ms ease-in;
+}
+.ant-collapse-header:hover {
+    --tw-bg-opacity: 1;
+    background-color: rgba(219, 234, 254, var(--tw-bg-opacity));
+}
+.ant-collapse-header:hover .anticon.anticon-caret-down {
+    --tw-text-opacity: 1;
+    color: rgba(59, 130, 246, var(--tw-text-opacity)) !important;
+}
+.ant-collapse-item.ant-collapse-item-active .ant-collapse-header {
+    border-right-width: 4px;
+    --tw-border-opacity: 1;
+    border-color: rgba(59, 130, 246, var(--tw-border-opacity));
+    --tw-bg-opacity: 1;
+    background-color: rgba(219, 234, 254, var(--tw-bg-opacity));
+
+}
+.ant-collapse-item.ant-collapse-item-active .ant-collapse-header .ant-collapse-custom {
+    --tw-text-opacity: 1;
+    color: rgba(59, 130, 246, var(--tw-text-opacity));
+}
+.ant-collapse-item.ant-collapse-item-active .anticon.anticon-caret-down {
+    --tw-text-opacity: 1;
+    color: rgba(59, 130, 246, var(--tw-text-opacity)) !important;
+}
+.panel-item__customize {
+    margin-bottom: 10px;
+}
+
+
+/* CSS Container Antd Layout Component */
+.container-admin {
+    width: 100% !important;
+}
+main.ant-layout-content.container-admin {
+    width: 80% !important;
+}
+.profile-avatar .ant-image .ant-image-img.img-avatar__customize {
+    border-radius: 50%;
+    --tw-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.09);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+/* CSS Footer Antd Layout Component */
+.footer-admin {
+    --tw-bg-opacity: 1;
+    background-color: rgba(219, 234, 254, var(--tw-bg-opacity)) !important;
+}

@@ -35,13 +35,11 @@ export default function ProductPage(props) {
 
             {/* Product Banner */}
             <div>
-                <img src="/assets/img/bg/banner-sneaker.jpg" alt="Banner-sneaker" className="object-cover w-full h-138 animate-fade" />
+                <img src="https://res.cloudinary.com/fpt-shoftware/image/upload/v1627833163/nextjs-media/banner-sneaker_mj1rv7.jpg" alt="Banner-sneaker" className="object-cover w-full h-138 animate-fade" />
             </div>
 
             {/* Breadcrumb */}
             <Breadcrumbs title="Sản phẩm" breadcrumbs={breadcrumbs}/>
-
-            
 
             {/* Product Content */}
             <div className="px-14 mt-8 mb-10">

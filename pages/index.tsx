@@ -15,14 +15,3 @@ export function Index() {
 
 Index.Layout = DefaultLayout;
 
-
-// export async function getServerSideProps(context) {
-
-//     const res = await data('product');
-//     console.log(res);
-    
-
-//     return {
-//       props: {}, // will be passed to the page component as props
-//     }
-//   }
