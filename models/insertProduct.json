@@ -1,0 +1,40 @@
+{
+    "name": "Vans Old Skool",
+    "code": "VN000D3HY28",
+    "description": "Thiết kế Vans Old Skool Classic trắng đen kinh điển, sử dụng kết hợp chất liệu vải Canvas mềm, nhẹ ở thân giày và chất liệu da lộn ở mũi giày và đế giày mang đến cho bạn sự thoải mái khi di chuyển. Đế cao su chuyên dùng cho bộ môn trượt ván đảm bảo độ bền chắc và có độ bám tốt. Khả năng kết hợp nhiều outfit mà không sợ bị lệch tông.",
+    "infoProduct": "Tone màu trắng - đen cơ bản gần như kinh điển của Vans. Đường lượn sóng bằng da 2 bên thân giày tạo điểm nhấn đặc trưng cho Vans Old Skool. Vải Canvas kết hợp với da lộn tạo nên độ êm ái cho người dùng ngay cả khi vận động nhiều. Vòng đệm bao quanh cổ giày giúp người mang có được sự thoải mái khi di chuyển mà không sợ ảnh hưởng gót chân. Đế giày được làm từ cao su bền chắc, có độ bám và đàn hồi tốt",
+    "category": "Vans",
+    "productType": "VANS CLASSIC",
+    "productLine": "Old Skool",
+    "sizes": ["35", "36", "37", "38", "39", "40", "41", "42"],
+    "images": [
+      {
+        "public_id": "nextjs_media/jdi9qo0oiinwik8uxabc",
+      "url": "https://res.cloudinary.com/fpt-shoftware/image/upload/v1627028030/nextjs-media/vans-bw-1_xlxqx6.jpg"
+      },
+      {
+        "public_id": "nextjs_media/jdi9qo0oiinwik8uxdsdc",
+        "url": "https://res.cloudinary.com/fpt-shoftware/image/upload/v1627028028/nextjs-media/vans-bw-2_sgmhht.jpg"
+      },
+      {
+        "public_id": "nextjs_media/jdi9qo0oiinwaddssdsdc",
+        "url": "https://res.cloudinary.com/fpt-shoftware/image/upload/v1627028032/nextjs-media/vans-bw-3_ypduld.jpg"
+      },
+      {
+        "public_id": "nextjs_media/jdidsds88assaddssdsdc",
+        "url": "https://res.cloudinary.com/fpt-shoftware/image/upload/v1627028027/nextjs-media/vans-bw-4_bbwnah.jpg"
+      }
+    ],
+    "material": "Canvas",
+    "colors": "Đen",
+    "gender": "Unisex",
+    "tagProduct": ["New"],
+    "accessories": "Túi Vans, Phiếu bảo hành chính hãng, Hộp giày",
+    "checked": false,
+    "price": 1750000,
+    "discount": 0,
+    "inStock": 20,
+    "sold": 2,
+    "rating": 0,
+    "numberReview": 0
+}

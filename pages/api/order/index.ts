@@ -26,7 +26,7 @@ const getOrders = async (req, res) => {
         if(result.role === "user") {
             orders = await Orders.find({user: result.id}).populate("user", "-password");
         }
-        else {
+        else if(result.role === "admin") {
             orders = await Orders.find().populate("user", "-password");
         }
         res.json({orders});
@@ -38,11 +38,12 @@ const getOrders = async (req, res) => {
 const createOrder = async (req, res) => {
     try {
         const result = await Auth(req, res);
-        const { address, phone, payment, cart, totalPrice } = req.body;
+        const { address, name, phone, payment, cart, totalPrice } = req.body;
 
         const newOrder = new Orders({
             user: result.id,
             address,
+            name,
             phone,
             payment,
             cart,
@@ -55,7 +56,7 @@ const createOrder = async (req, res) => {
 
         await newOrder.save();
         res.json({
-            message: "Đặt hàng thành công! Chúng tôi sẽ liên lạc lại để xác nhận đơn hàng của bạn",
+            message: "Đặt hàng thành công! Chúng tôi sẽ liên lạc lại để xác nhận đơn hàng của bạn và vui lòng kiểm tra lại thông tin đặt hàng qua lịch sử đơn hàng của bạn",
             newOrder
         });
     } catch (error) {

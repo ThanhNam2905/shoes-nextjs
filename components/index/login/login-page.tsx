@@ -45,8 +45,16 @@ export default function LoginPage(props) {
     }
 
     useEffect(() => {
-        if(Object.keys(auth).length !== 0) {
+        router.prefetch("/cart");
+        router.prefetch("/admin");
+    }, []);
+
+    useEffect(() => {
+        if(Object.keys(auth).length !== 0 && auth.user.role === "user") {
             router.push('/cart');
+        }
+        else if(Object.keys(auth).length !== 0 && auth.user.role === "admin") {
+            router.push('/admin');
         }
     }, [auth]);
 

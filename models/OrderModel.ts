@@ -9,6 +9,10 @@ const orderSchema = new mongoose.Schema({
         type: String,
         require: true
     },
+    name: {
+        type: String,
+        require: true
+    },
     phone: {
         type: String,
         require: true
@@ -30,6 +34,10 @@ const orderSchema = new mongoose.Schema({
         default: false
     },
     statusPayment: {
+        type: Boolean,
+        default: false
+    },
+    paid: {
         type: Boolean,
         default: false
     },

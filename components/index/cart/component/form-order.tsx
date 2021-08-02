@@ -1,7 +1,5 @@
 import { data } from '../data/data';
-import 'antd/dist/antd.css';
-import { Select } from 'antd';
-import { Form, Input, Button, Radio, message } from 'antd';
+import { Select, Form, Input, Button, Radio, message, notification } from 'antd';
 import { useContext, useEffect, useState } from 'react';
 import { DataContext } from '../../../../store/GlobalState';
 import PaypalBtn from './PaypalBtn';
@@ -54,6 +52,7 @@ export default function FormOrder({ totalPrice }: PropsType) {
     const [payment, setPayment] = useState(false);
     const [cartPayment, setCartPayment] = useState({
         address: "",
+        name: "",
         phone: "",
         payment: 0,
         cart: {},
@@ -97,15 +96,18 @@ export default function FormOrder({ totalPrice }: PropsType) {
     
 
     const checkOutPayment = async (values) => {
-        const { city, districts, wards, street, phone, payment } = values;
+        const { city, districts, wards, street, name, phone, payment } = values;
         const address = `${street}, ${wards}, ${districts}, ${city}`;
         await setCartPayment({
             address: address,
+            name: name,
             phone: phone,
             payment: payment,
             cart: cart,
             totalPrice: totalPrice
         });
+        console.log(name);
+        
 
         let newCart = [];
         for(const item of cart) {
@@ -120,7 +122,7 @@ export default function FormOrder({ totalPrice }: PropsType) {
             message.error("Sản phẩm bạn chọn đã hết hàng hoặc số lượng không đủ");
         }
 
-        postData('order', { address, phone, payment, cart, totalPrice}, auth.token)
+        postData('order', { address, name, phone, payment, cart, totalPrice}, auth.token)
         .then(res => {
             if(res.error) {
                 message.error(res.error);
@@ -133,12 +135,13 @@ export default function FormOrder({ totalPrice }: PropsType) {
                 user: auth.user
             }
             dispatch({ type: "ADD_ORDERS", payload: [...orders, newOrder]})
+            notification.success({
+                message: "Thông báo",
+                description: res.message,
+                duration: 4
+            });
 
-            // show message order success
-            const hide = message.success(res.message, 0);
-            setTimeout(hide, 4000);
-
-            return router.push(`/order/${res.newOrder._id}`);
+            // return router.push(`/order/${res.newOrder._id}`);
         })  
     };
 
@@ -163,6 +166,36 @@ export default function FormOrder({ totalPrice }: PropsType) {
                 }}
                 onFinish={checkOutPayment}
             >
+                <Form.Item
+                    style={{ width: "100%" }}
+                    label="Họ và Tên"
+                    name="name"
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Vui lòng ghi họ và tên của bạn !',
+                        },
+                    ]}
+                    hasFeedback
+                >
+                    <Input type="text" min={0} max={10} placeholder="Name"/>
+                </Form.Item>
+
+                <Form.Item
+                    style={{ width: "100%" }}
+                    label="Số Điện Thoại"
+                    name="phone"
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Vui lòng ghi số điện thoại của bạn !',
+                        },
+                    ]}
+                    hasFeedback
+                >
+                    <Input type="text" min={0} max={10} placeholder="Number Phone"/>
+                </Form.Item>
+
                 <Form.Item
                     style={{ width: "100%" }}
                     label="Tỉnh/Thành phố"
@@ -282,21 +315,6 @@ export default function FormOrder({ totalPrice }: PropsType) {
 
                 <Form.Item
                     style={{ width: "100%" }}
-                    label="Số Điện Thoại"
-                    name="phone"
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Vui lòng ghi số điện thoại của bạn !',
-                        },
-                    ]}
-                    hasFeedback
-                >
-                    <Input type="text" min={0} max={10} placeholder="Number Phone"/>
-                </Form.Item>
-
-                <Form.Item
-                    style={{ width: "100%" }}
                     label="Phương thức thanh toán"
                     name="payment"
                     rules={[
@@ -319,7 +337,6 @@ export default function FormOrder({ totalPrice }: PropsType) {
                             </Radio.Group>
                         )
                     }
-                    
                 </Form.Item>
 
                 <Form.Item>

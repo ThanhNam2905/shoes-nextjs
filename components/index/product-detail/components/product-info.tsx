@@ -46,6 +46,7 @@ export default function ProductInfo({ product }: PropsType) {
             productName : product.name, 
             productPrice : productPrice, 
             productImage : product.images[0], 
+            code: product.code,
             qty: quantity, 
             size: activeState.activeSize,
             inStock: product.inStock,
@@ -76,6 +77,9 @@ export default function ProductInfo({ product }: PropsType) {
                         <p className="text-16 font-medium mb-1.5 text-gray-700">Code: 
                             <span className="text-gray-600 font-normal ml-2">{product.code}</span>
                         </p>
+                        <p className="text-16 font-medium mb-1.5 text-gray-700">Dòng sản phẩm: 
+                            <span className="text-gray-600 font-normal ml-2">{product.productLine}</span>
+                        </p>
                         <p className="text-16 font-medium mb-1.5 text-gray-700">Chất liệu: 
                             <span className="text-gray-600 font-normal ml-2">{product.material}</span>
                         </p>
@@ -86,7 +90,7 @@ export default function ProductInfo({ product }: PropsType) {
                             <span className="text-gray-600 font-normal ml-2">{product.gender}</span>
                         </p>
                         <p className="text-16 font-medium mb-1.5 text-gray-700">Price: 
-                            <span className="text-red-500 font-semibold text-3xl ml-3 underline">{new Intl.NumberFormat('de-DE').format(productPrice)} đ</span> 
+                            <span className="text-red-500 font-semibold text-3xl ml-3">{new Intl.NumberFormat().format(productPrice)} ₫</span> 
                         </p>
                         <p className="text-16 font-medium mb-1.5 text-gray-700">Phụ kiện đi kèm: 
                             <span className="text-gray-600 font-normal ml-2">{product.accessories}</span>
@@ -112,13 +116,17 @@ export default function ProductInfo({ product }: PropsType) {
                                         activeState.activeSize === null ? (
                                             <p className="font-semibold mb-0">Vui lòng chọn Size</p>
                                         ) : (
-                                            <p className="font-semibold mb-0">Size: 
-                                                <span className="text-blue-500 text-20 ml-1.5">{activeState.activeSize}</span>
-                                            </p>
+                                            <>
+                                                <p className="font-semibold mb-0">Size: 
+                                                    <span className="text-blue-500 text-20 ml-1.5">{activeState.activeSize}</span>
+                                                </p>
+                                                
+                                            </>
                                         )
                                     }
                                     <button className="hover:text-red-600">Hướng dẫn chọn Size</button>
                                 </div>
+                                
                                 <div className="grid grid-cols-4 gap-4">
                                     {
                                         product.sizes.length > 0 ? (
@@ -131,10 +139,18 @@ export default function ProductInfo({ product }: PropsType) {
                                     }
                                 </div>
                             </div>
+
+                            <div className="mt-5">
+                                {
+                                    activeState.activeSize !== null &&
+                                        <p className="text-16 font-semibold text-blue-500 mb-0">Sản phẩm này chỉ còn {product.inStock}</p>
+                                }
+                            </div>
+
                             <div className="flex items-center justify-between bg-gray-200 rounded-lg my-10 py-8 px-8">
                                 <div className="flex items-center">
                                     <p className="text-18 font-semibold mb-0 mr-5">Số lượng: </p>
-                                    <ProductQuantity quantity={quantity} setQuantity={setQuantity}/>
+                                    <ProductQuantity quantity={quantity} setQuantity={setQuantity} inStock={product.inStock}/>
                                 </div>
                                 
                                 <button className="btn btn--add-to-cart mx-8 text-14 flex items-center opacity-80 hover:opacity-100 hover:underline" 
@@ -142,7 +158,6 @@ export default function ProductInfo({ product }: PropsType) {
                                         <AiOutlineShoppingCart className="text-18 mr-2"/>
                                         <span>Thêm vào giỏ hàng</span>
                                 </button>
-                                
                             </div>
                         </>
                     )

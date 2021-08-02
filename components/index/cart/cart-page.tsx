@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import { MdChevronLeft } from "react-icons/md";
 import { FiShoppingBag } from "react-icons/fi";
 import { useState, useContext, useEffect } from "react";
@@ -25,7 +26,7 @@ export default function CartPage(props) {
         getTotalPrice();
     }, [cart]);
 
-    
+    const router = useRouter();
     
     return (
         <>

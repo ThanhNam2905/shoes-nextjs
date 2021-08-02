@@ -64,17 +64,17 @@ export default function ProductQuantity({ quantity, setQuantity, cart, idCart, i
                         </button>
                     </div>
                 ): (
-                    <div className="flex items-center space-x-2 border border-gray-400 text-gray-400 rounded-md">
-                        <button className="focus:outline-none border border-r-2 border-gray-400 hover:bg-gray-500 hover:text-gray-900 p-3.5 rounded-tl-md rounded-bl-md"
+                    <div className="flex items-center space-x-2 bg-white border border-gray-900 text-gray-400 rounded-md overflow-hidden">
+                        <button className="focus:outline-none  hover:bg-gray-500 hover:text-gray-900 p-3.5"
                                 disabled={quantity === 1 ? true : false } 
                                 onClick={() => handleSetQuantity(quantity - 1)}>
-                            <FaMinus className="text-12  " />
+                            <FaMinus className="text-12" />
                         </button>
                         <input type="text" className="w-10 text-gray-900 font-semibold text-center" value={quantity} onChange={(e) => handleSetQuantity(Number(e.target.value))} />
-                        <button className="focus:outline-none border border-l-2 border-gray-400 hover:bg-gray-500 hover:text-gray-900 p-3.5 rounded-tr-md rounded-br-md"
+                        <button className="focus:outline-none hover:bg-gray-500 hover:text-gray-900 p-3.5"
                                 disabled={quantity === inStock? true : false } 
                                 onClick={() => handleSetQuantity(quantity + 1)}>
-                            <FaPlus className="text-12  " />
+                            <FaPlus className="text-12" />
                         </button>
                     </div>
                 )

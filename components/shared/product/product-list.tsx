@@ -24,7 +24,7 @@ export default function ProductList({ title }: PropsType) {
                         <a href="#">
                             <div className="tag-sale absolute z-10 top-2 right-2">Sale</div>
                             <div className="overflow-hidden">
-                                <img src="/assets/img/product/nike-sneaker1.jpg" alt="" className="object-cover w-full h-80 max-h-80 transform hover:scale-110 transition ease-linear duration-200" />
+                                <img src="https://res.cloudinary.com/fpt-shoftware/image/upload/v1626968889/nextjs-media/vans-navy-1_m9qilv.jpg" alt="" className="object-cover w-full h-80 max-h-80 transform hover:scale-110 transition ease-linear duration-200" />
                             </div>
                             <div className="px-4 pb-4">
                                 <h4 className="mt-3 mb-1 text-20">Nike Air Jordan 1</h4>
@@ -38,7 +38,7 @@ export default function ProductList({ title }: PropsType) {
                         <a href="#">
                             <div className="tag-sale absolute z-10 top-2 right-2">Sale</div>
                             <div className="overflow-hidden">
-                                <img src="/assets/img/product/nike-sneaker12.jpg" alt="" className="object-cover w-full h-80 max-h-80 transform hover:scale-110 transition ease-linear duration-200" />
+                                <img src="https://res.cloudinary.com/fpt-shoftware/image/upload/v1627105898/nextjs-media/vans-white-1-650x650_sach4r.jpg" alt="" className="object-cover w-full h-80 max-h-80 transform hover:scale-110 transition ease-linear duration-200" />
                             </div>
                             <div className="px-4 pb-4">
                                 <h4 className="mt-3 mb-1 text-20">Nike Air Jordan 1</h4>
@@ -52,7 +52,7 @@ export default function ProductList({ title }: PropsType) {
                         <a href="#">
                             <div className="tag-sale absolute z-10 top-2 right-2">Sale</div>
                             <div className="overflow-hidden">
-                                <img src="/assets/img/product/nike-sneaker13.jpg" alt="" className="object-cover w-full h-80 max-h-80 transform hover:scale-110 transition ease-linear duration-200" />
+                                <img src="https://res.cloudinary.com/fpt-shoftware/image/upload/v1627028030/nextjs-media/vans-bw-1_xlxqx6.jpg" alt="" className="object-cover w-full h-80 max-h-80 transform hover:scale-110 transition ease-linear duration-200" />
                             </div>
                             <div className="px-4 pb-4">
                                 <h4 className="mt-3 mb-1 text-20">Nike Air Jordan 1</h4>
@@ -66,7 +66,7 @@ export default function ProductList({ title }: PropsType) {
                         <a href="#">
                             <div className="tag-sale absolute z-10 top-2 right-2">Sale</div>
                             <div className="overflow-hidden">
-                                <img src="/assets/img/product/nike-sneaker14.jpg" alt="" className="object-cover w-full h-80 max-h-80 transform hover:scale-110 transition ease-linear duration-200" />
+                                <img src="https://res.cloudinary.com/fpt-shoftware/image/upload/v1627028122/nextjs-media/vans-checkbroad-1_syjvj4.jpg" alt="" className="object-cover w-full h-80 max-h-80 transform hover:scale-110 transition ease-linear duration-200" />
                             </div>
                             <div className="px-4 pb-4">
                                 <h4 className="mt-3 mb-1 text-20">Nike Air Jordan 1</h4>

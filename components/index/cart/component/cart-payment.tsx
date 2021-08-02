@@ -1,11 +1,11 @@
-import { IoCloseCircleOutline } from "react-icons/io5";
 import { useContext, useEffect, useRef, useState } from "react";
-import { MdAttachMoney } from "react-icons/md";
 import { DataContext } from "../../../../store/GlobalState";
 import Dialog from "../../../shared/utilities/dialog/dialog";
 import { useRouter } from 'next/router';
 import FormOrder from "./form-order";
-
+// Ant Design
+import { notification } from 'antd';
+import { CloseCircleOutlined, DollarOutlined } from '@ant-design/icons';
 
 type PropsType = {
     [x: string]: any;
@@ -28,12 +28,18 @@ export default function CartPayment({ totalPrice }: PropsType) {
     const router = useRouter();
     const handlerCheckout = () => {
         if (auth.user) {
-            openModal();
+            if(auth.user.role === "user") {
+                openModal();
+            }
         }
         else {
+            notification.info({
+                message: "Thông báo",
+                description: "Vui lòng đăng nhập tài khoản để có thể đặt hàng",
+                duration: 4
+            });
             router.replace('/login');
         }
-
     }
 
     const dialogRef = useRef(null);
@@ -54,19 +60,19 @@ export default function CartPayment({ totalPrice }: PropsType) {
 
     return (
         <>
-            <div className="w-3/12 bg-blue-100 border-2 border-gray-400 py-8 px-7 rounded-sm">
+            <div className="w-3/12 bg-blue-100 border-2 border-gray-400 py-8 px-7 rounded-sm h-4/6">
                 <div className="divide-y-2 divide-gray-400">
                     <h5 className="text-24 pb-4 flex items-center font-medium">
-                        <MdAttachMoney />
+                        <DollarOutlined  className="mr-2"/>
                         Tổng giỏ hàng
                     </h5>
                     <div className="flex items-center justify-between">
-                        <p className="uppercase py-5 ">Tạm tính</p>
-                        <p className="font-semibold text-18">{new Intl.NumberFormat().format(totalPrice)} ₫</p>
+                        <p className="uppercase py-5 mb-0">Tạm tính</p>
+                        <p className="font-semibold text-18 mb-0">{new Intl.NumberFormat().format(totalPrice)} ₫</p>
                     </div>
                     <div className="flex items-center justify-between">
-                        <p className="uppercase py-5">Tổng tiền</p>
-                        <p className="font-semibold  text-18">{new Intl.NumberFormat().format(totalPrice)} ₫</p>
+                        <p className="uppercase py-5 mb-0">Tổng tiền</p>
+                        <p className="font-semibold text-18 mb-0">{new Intl.NumberFormat().format(totalPrice)} ₫</p>
                     </div>
                 </div>
 
@@ -81,17 +87,15 @@ export default function CartPayment({ totalPrice }: PropsType) {
                         target={dialogRef}
                     >
                         <div className="flex items-center justify-between py-2 px-6 border-b border-gray-200 mb-2">
-                            <p className="text-gray-900 text-16 mt-2 font-semibold">Thông tin đặt hàng</p>
-                            <i className="text-2xl cursor-pointer hover:text-red-600" onClick={() => handlerCloseDialog()}><IoCloseCircleOutline /></i>
+                            <p className="text-gray-900 text-16 mt-2 font-semibold mb-3">Thông tin đặt hàng</p>
+                            <i className="text-2xl cursor-pointer hover:text-red-600" onClick={() => handlerCloseDialog()}><CloseCircleOutlined /></i>
                         </div>
 
                         <div className="w-full px-5">
                             <FormOrder totalPrice={totalPrice}/>
                         </div>
-
                     </Dialog>
                 }
-
             </div>
         </>
     )
