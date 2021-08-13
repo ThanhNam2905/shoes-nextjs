@@ -17,7 +17,7 @@ export default function NotFound({ text, icon, href, textHref }: PropsType) {
                 <span className="text-18 my-8">{text || "Không tìm thấy"}</span>
                 { href && (
                     <Link href={href}>
-                        <a className="btn btn--back flex items-center hover:text-gray-800 hover:border-gray-800"> 
+                        <a className="btn btn--back flex items-center justify-center"> 
                             <i className="mr-1 mt-0.5"><HiArrowNarrowLeft/></i>
                             Quay trở lại {textHref}
                         </a> 

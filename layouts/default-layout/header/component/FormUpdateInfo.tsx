@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Button, Input, message, Image, Upload } from 'antd'; // Andt Design
 import ImgCrop from 'antd-img-crop';
 import { patchData } from "../../../../utils/fetchData";
-import { imageUpload } from "../../../../utils/imageUpload";
+import { imageUploadAvatar } from "../../../../utils/imageUploadAvatar";
 
 type PropsType = {
     [x: string]: any;
@@ -79,7 +79,7 @@ export default function FormUpdateInfo({ avatar, username, auth, dispatch, data,
     const updateAvatar = async () => {
         let media;
         if(avatar) {
-            media = await imageUpload(avatar);
+            media = await imageUploadAvatar(avatar);
         }
         // console.log(media);
         

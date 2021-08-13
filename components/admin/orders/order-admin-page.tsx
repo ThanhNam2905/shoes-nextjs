@@ -1,7 +1,9 @@
+// Ant Design
 import { Table, Button, Tooltip, Drawer, Tag, message } from 'antd';
+import { ShoppingCartOutlined, CloseOutlined } from '@ant-design/icons';
+
 import { useState, useContext } from 'react';
 import { DataContext } from '../../../store/GlobalState';
-import { ShoppingCartOutlined, CloseOutlined } from '@ant-design/icons';
 import { patchData } from '../../../utils/fetchData';
 import { updateItem } from '../../../store/Actions';
 
@@ -56,7 +58,7 @@ export default function OrderAdminPage(props) {
                     placement="right"
                     closable={true}
                     onClose={onClose}
-                    visible={index.key==indexCart ? visible:null}
+                    visible={index.key === indexCart ? visible : null}
                 >
                     <div className="group-cart-item">
                         <div>
@@ -91,8 +93,7 @@ export default function OrderAdminPage(props) {
         )
     }
 
-    
-
+    // Feature Admin Update Delivered
     const handleDelivered = (order) => {
         console.log(order);
         patchData(`order/delivered/${order.key}`, null, auth.token)
@@ -178,8 +179,6 @@ export default function OrderAdminPage(props) {
         },
     ];
 
-    
-
     const dataList = [];
 
     for (const item of orders) {
@@ -200,7 +199,7 @@ export default function OrderAdminPage(props) {
 
     return (
         <>
-            <div className="group-order pt-4 pb-8 px-7" style={{ minHeight: "80vh" }}>
+            <div className="group-orders pt-4 pb-8 px-7" style={{ minHeight: "80vh" }}>
                 <h2 className="text-center text-28 font-medium mb-8">Danh sách đơn hàng</h2>
 
                 <div className="list-orders bg-white border border-gray-400 py-8 px-4 rounded-md">

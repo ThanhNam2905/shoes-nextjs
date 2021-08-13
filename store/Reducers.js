@@ -14,16 +14,28 @@ const reducers = (state, action) => {
                 cart: action.payload
             };
             break;
-        case ACTIONS.ADD_MODAL: 
-            return {
-                ...state,
-                modal: action.payload
-            };
-            break;
         case ACTIONS.ADD_ORDERS: 
             return {
                 ...state,
                 orders: action.payload
+            };
+            break;
+        case ACTIONS.ADD_USERS: 
+            return {
+                ...state,
+                users: action.payload
+            };
+            break; 
+        case ACTIONS.ADD_CATEGORIES: 
+            return {
+                ...state,
+                categories: action.payload
+            };
+            break;
+        case ACTIONS.DELETE_PRODUCT: 
+            return {
+                ...state,
+                products: action.payload
             };
             break; 
         default:

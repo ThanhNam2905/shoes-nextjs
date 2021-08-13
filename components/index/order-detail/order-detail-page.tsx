@@ -4,8 +4,8 @@ import { useRouter } from 'next/router';
 import { useContext, useState, useEffect } from "react";
 import { DataContext } from "../../../store/GlobalState";
 import OrderDetailItem from "./component/order-detail-item";
+
 // Ant Design
-import { notification } from 'antd';
 import { DollarOutlined, ArrowLeftOutlined } from '@ant-design/icons';
 
 const PAYMENT_CHECKOUT = {
@@ -49,7 +49,7 @@ export default function OrderDetailPage(props) {
         const result = `${hours} giờ ${minutes} phút - ${weekday}, Ngày ${day}, ${month}, ${year} `;
         return (
             <>
-                <span className="font-medium text-16 text-gray-700">{result}</span>
+                <span className="font-medium text-16 text-gray-700">vào lúc {result}</span>
             </>
         )
     }
@@ -107,6 +107,7 @@ export default function OrderDetailPage(props) {
                                                         <span className="text-gray-700">{order.paid ? `, vào lúc ${formatDate(order.dateOfPayment)}` : ""}</span>
                                                     </span>
                                                 </p>
+                                                {/* <p>{typeof order.createdAt}</p> */}
                                                 <p className="font-semibold mb-2">Ngày đặt hàng: {formatDate(order.createdAt)}</p>
                                             </div>
 

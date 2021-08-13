@@ -60,8 +60,8 @@ export default function CartPayment({ totalPrice }: PropsType) {
 
     return (
         <>
-            <div className="w-3/12 bg-blue-100 border-2 border-gray-400 py-8 px-7 rounded-sm h-4/6">
-                <div className="divide-y-2 divide-gray-400">
+            <div className="group-cart-payment w-3/12 py-10 px-7 rounded-md h-3/4">
+                <div className="divide-y-2 divide-gray-100">
                     <h5 className="text-24 pb-4 flex items-center font-medium">
                         <DollarOutlined  className="mr-2"/>
                         Tổng giỏ hàng
@@ -76,7 +76,7 @@ export default function CartPayment({ totalPrice }: PropsType) {
                     </div>
                 </div>
 
-                <button className="flex w-full justify-center rounded bg-red-500 hover:bg-red-400 transition ease-in duration-150 py-3 mt-5 text-white focus:outline-none"
+                <button className="btn--payment mx-auto flex items-center justify-center rounded transition ease-in duration-200 mt-8 text-white focus:outline-none"
                     onClick={() => handlerCheckout()}>Tiến hành thanh toán
                 </button>
 

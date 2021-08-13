@@ -38,6 +38,16 @@ export default function FormOrder({ totalPrice }: PropsType) {
     const { cart, auth, orders } = state;
     const router = useRouter();
 
+    const [form] = Form.useForm();
+    useEffect(() => {
+        form.resetFields(["districts"]);
+        form.resetFields(["wards"]);
+    }, [city]);
+
+    useEffect(() => {
+        form.resetFields(["wards"]);
+    }, [districts]);
+
     const handlerChangeCity = async (value) => {
         await setCity(value);
     }
@@ -94,7 +104,6 @@ export default function FormOrder({ totalPrice }: PropsType) {
     //     }
     // }, [callBack]);
     
-
     const checkOutPayment = async (values) => {
         const { city, districts, wards, street, name, phone, payment } = values;
         const address = `${street}, ${wards}, ${districts}, ${city}`;
@@ -106,12 +115,8 @@ export default function FormOrder({ totalPrice }: PropsType) {
             cart: cart,
             totalPrice: totalPrice
         });
-        console.log(name);
-        
-
         let newCart = [];
         for(const item of cart) {
-            // console.log(item);
             const res = await getData(`product/${item._id}`);
             if(res.product.inStock - item.qty >= 0) {
                 newCart.push(item);
@@ -145,16 +150,6 @@ export default function FormOrder({ totalPrice }: PropsType) {
         })  
     };
 
-    const [form] = Form.useForm();
-    useEffect(() => {
-        form.resetFields(["districts"]);
-        form.resetFields(["wards"]);
-    }, [city]);
-
-    useEffect(() => {
-        form.resetFields(["wards"]);
-    }, [districts]);
-
     return (
         <>
             <Form
@@ -178,7 +173,7 @@ export default function FormOrder({ totalPrice }: PropsType) {
                     ]}
                     hasFeedback
                 >
-                    <Input type="text" min={0} max={10} placeholder="Name"/>
+                    <Input type="text" min={0} max={100000} placeholder="Name"/>
                 </Form.Item>
 
                 <Form.Item

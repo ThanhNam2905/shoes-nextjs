@@ -7,7 +7,7 @@ import ImgCrop from 'antd-img-crop';
 import { UserOutlined, EditOutlined, MailOutlined, PhoneOutlined, CameraOutlined } from '@ant-design/icons';
 import { patchData } from '../../../utils/fetchData';
 import FormUpdatePassword from '../../../layouts/default-layout/header/component/FormUpdatePassword';
-import { imageUpload } from '../../../utils/imageUpload';
+import { imageUploadAvatar } from '../../../utils/imageUploadAvatar';
 
 
 export default function ProfileAdminPage(props) {
@@ -96,7 +96,7 @@ export default function ProfileAdminPage(props) {
     const updateAvatar = async () => {
         let media;
         if(avatar) {
-            media = await imageUpload(avatar);
+            media = await imageUploadAvatar(avatar);
         }
         patchData('user/uploadAvatar', { avatar: avatar? media[0].url : auth.user.avatar }, auth.token)
         .then(res => {

@@ -1,18 +1,18 @@
 import Head from "next/head";
-import { ReactPropTypes, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { BiChevronDown } from "react-icons/bi";
 import Breadcrumbs from "../../shared/utilities/breadcrumbs/breadcrumbs";
 import PaginationComponent from "../../shared/utilities/pagination/pagination-component";
 import { ScrollToTopBtn } from "../../shared/utilities/scrollToTop/scrollToTop";
 import ProductItem from "./components/productItem";
 
-interface ProductsProps extends ReactPropTypes {
-    product: any;
+type PropsType = {
+    [x: string]: any;
+    products: any;
 }
 
-export default function ProductPage(props) {
+export default function ProductPage({ products }: PropsType) {
 
-    const { products } = props;
     const [breadcrumbs, setBreadcrumbs] = useState([]);
 
     useEffect(() => {
