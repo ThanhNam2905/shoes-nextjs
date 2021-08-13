@@ -31,23 +31,17 @@ export default function CartItem({ item, cart }: PropsType) {
         
     }
     
-    const { state, dispatch } = useContext(DataContext);
-    const { modal } = state;
+    const { dispatch } = useContext(DataContext);
 
     const ClickBtnDeleteItemCart = () => {
         openModal();
-        dispatch({ 
-            type: 'ADD_MODAL',
-            payload: { data: cart, idCart: item.idCart, productName: item.productName }
-        })
     }
     
     const handlerDeleteItemCart = () => {
-        dispatch(deleteItemCart(modal.data, modal.idCart, 'ADD_CART'));
+        dispatch(deleteItemCart(cart, item.idCart, 'ADD_CART'));
         closeModal();
         message.success("Delete sản phẩm thành công");
     }
-    // console.log(item);
     
     return (
         <> 

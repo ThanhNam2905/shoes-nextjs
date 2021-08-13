@@ -93,9 +93,9 @@ export default function LoginPage(props) {
                         </div>
                         
                         <div className="flex flex-col items-center mb-8 w-full">
-                            <input type="submit" value="Đăng nhập" className="btn w-full text-white bg-red-600 hover:bg-gray-900 px-5 tracking-wider py-2 mt-2.5 rounded" />
-                            <p className="text-gray-500 text-15 mt-4">Bạn chưa có tài khoản, vui lòng đăng ký <Link href="/login"><a className="text-red-600 font-semibold hover:underline">Tại Đây.</a></Link></p>
-                            <button className="text-red-600 font-semibold mt-3">Quên mật khẩu?</button>
+                            <input type="submit" value="Đăng nhập" className="btn btn-hover-effect-1 text-18 text-white tracking-wider py-3 mt-5 rounded" />
+                            <p className="text-gray-500 text-15 mt-4">Bạn chưa có tài khoản, vui lòng đăng ký <Link href="/register"><a className="text-red-600 font-semibold hover:underline">Tại Đây.</a></Link></p>
+                            <button className="text-red-600 font-semibold">Quên mật khẩu?</button>
                         </div>
                     </form>
                 </div>

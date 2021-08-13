@@ -2,7 +2,7 @@
 import { Collapse, message } from 'antd'; 
 import { CaretDownOutlined, HomeOutlined, AppstoreOutlined, IdcardOutlined,
     LogoutOutlined, FilePptOutlined, UnorderedListOutlined, FileAddOutlined, 
-    ShoppingCartOutlined, UsergroupAddOutlined
+    ShoppingCartOutlined, UsergroupAddOutlined, ShopOutlined
 } from '@ant-design/icons';
 const { Panel } = Collapse;
 import Cookie from 'js-cookie';
@@ -77,14 +77,20 @@ export default function SideBarAdmin(props) {
                                         </div>} 
                                 key="2"
                                 className="panel-item__customize">
-                                    <p className="text-16 text-gray-600 ml-10 flex items-center">
-                                        <UnorderedListOutlined className="mt-0.5"/>
-                                        <span className="ml-1.5">Danh sách sản phẩm</span>
-                                    </p>
-                                    <p className="text-16 text-gray-600 ml-10 flex items-center">
-                                        <FileAddOutlined className="mt-0.5"/>
-                                        <span className="ml-1.5">Thêm sản phẩm</span>
-                                    </p>
+                                    <Link href="/admin/products">
+                                        <a className="text-16 text-gray-600 mb-5 ml-10 flex items-center">
+                                            <UnorderedListOutlined className="mt-0.5"/>
+                                            <span className="ml-1.5">Danh sách sản phẩm</span>
+                                        </a>
+                                    </Link>
+                                    
+                                    <Link href="/admin/products/create-product">
+                                        <a className="text-16 text-gray-600 mb-0 ml-10 flex items-center">
+                                            <FileAddOutlined className="mt-0.5"/>
+                                            <span className="ml-1.5">Thêm mới sản phẩm</span>
+                                        </a>
+                                    </Link>
+                                    
                         </Panel>
                         <Panel  header= {<div className="ant-collapse-custom flex items-center space-x-2 text-gray-600 hover:text-blue-600">
                                             <i className="inline-block -mt-1.5"><ShoppingCartOutlined className="text-18 "/></i>
@@ -92,7 +98,7 @@ export default function SideBarAdmin(props) {
                                         </div>} 
                                 key="3"
                                 className="panel-item__customize">
-                                    <Link href="/admin/order">
+                                    <Link href="/admin/orders">
                                         <a className="text-16 text-gray-600 mb-4 ml-10 flex items-center">
                                             <UnorderedListOutlined className="mt-0.5"/>
                                             <span className="ml-1.5">Danh sách đơn hàng</span>
@@ -101,15 +107,30 @@ export default function SideBarAdmin(props) {
                                     
                         </Panel>
                         <Panel  header= {<div className="ant-collapse-custom flex items-center space-x-2 text-gray-600 hover:text-blue-600">
-                                            <i className="inline-block -mt-1.5"><UsergroupAddOutlined className="text-18 "/></i>
-                                            <p className="mb-0 text-16">Quản lý tài khoản</p>
+                                            <i className="inline-block -mt-1.5"><ShopOutlined className="text-18 "/></i>
+                                            <p className="mb-0 text-16">Quản lý danh mục</p>
                                         </div>} 
                                 key="4"
                                 className="panel-item__customize">
-                                    <p className="text-16 text-gray-600 ml-10 flex items-center">
-                                        <UnorderedListOutlined className="mt-0.5"/>
-                                        <span className="ml-1.5">Danh sách tài khoản</span>
-                                    </p>
+                                    <Link href="/admin/categories">
+                                        <a className="text-16 text-gray-600 ml-10 flex items-center">
+                                            <UnorderedListOutlined className="mt-0.5"/>
+                                            <span className="ml-1.5">Danh mục sản phẩm</span>
+                                        </a>
+                                    </Link> 
+                        </Panel>
+                        <Panel  header= {<div className="ant-collapse-custom flex items-center space-x-2 text-gray-600 hover:text-blue-600">
+                                            <i className="inline-block -mt-1.5"><UsergroupAddOutlined className="text-18 "/></i>
+                                            <p className="mb-0 text-16">Quản lý tài khoản</p>
+                                        </div>} 
+                                key="5"
+                                className="panel-item__customize">
+                                    <Link href="/admin/users">
+                                        <a className="text-16 text-gray-600 ml-10 flex items-center">
+                                            <UnorderedListOutlined className="mt-0.5"/>
+                                            <span className="ml-1.5">Danh sách tài khoản</span>
+                                        </a>
+                                    </Link> 
                         </Panel>
                 </Collapse>
             </div>

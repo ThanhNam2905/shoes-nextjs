@@ -68,7 +68,7 @@ export default function RegisterPage({
                 <div className="absolute z-20 top-24 left-1/2 transform -translate-x-1/2 text-24 font-semibold bg-white px-12 py-3 rounded-md shadow-2xl ring-2 ring-gray-100 ring-opacity-10 capitalize">Đăng ký</div>
                 <div className="w-1/3 bg-white mx-auto rounded-xl shadow-xl ring-8 ring-gray-100 ring-opacity-10 p-8">
                     <form method="POST" onSubmit={handlerSubmit_Register}>
-                        <div className="mt-8">
+                        <div className="mt-5">
                             <h4>Họ và tên <span className="text-red-600 ml-1">*</span></h4>
                             <div className="relative mb-4 w-full h-12 mt-2">
                                 <input  type="text" name="username" id="username"
@@ -79,7 +79,7 @@ export default function RegisterPage({
                                 <label className="form__label absolute left-3 top-3 text-15 px-2 cursor-text font-semibold text-gray-500 bg-white">Username...</label>
                             </div>
                         </div>
-                        <div className="mt-8">
+                        <div className="mt-5">
                             <h4>Địa chỉ Email <span className="text-red-600 ml-1">*</span></h4>
                             <div className="relative mb-4 w-full h-12 mt-2">
                                 <input  type="email" name="email" id="email"
@@ -90,7 +90,7 @@ export default function RegisterPage({
                                 <label className="form__label absolute left-3 top-3 text-15 px-2 cursor-text font-semibold text-gray-500 bg-white">Email...</label>
                             </div>
                         </div>
-                        <div className="mt-8">
+                        <div className="mt-5">
                             <h4>Số Điện Thoại <span className="text-red-600 ml-1">*</span></h4>
                             <div className="relative mb-4 w-full h-12 mt-2">
                                 <input  type="text" name="phone" id="phone"
@@ -101,7 +101,7 @@ export default function RegisterPage({
                                 <label className="form__label absolute left-3 top-3 text-15 px-2 cursor-text font-semibold text-gray-500 bg-white">Number phone...</label>
                             </div>
                         </div>
-                        <div className="mt-8">
+                        <div className="mt-5">
                             <h4>Mật Khẩu <span className="text-red-600 ml-1">*</span></h4>
                             <div className="relative mb-4 w-full h-12 mt-2">
                                 <input  type="password" name="password" id="password"
@@ -112,7 +112,7 @@ export default function RegisterPage({
                                 <label className="form__label absolute left-3 top-3 text-15 px-2 cursor-text font-semibold text-gray-500 bg-white">Password...</label>
                             </div>
                         </div>
-                        <div className="mt-8">
+                        <div className="mt-5">
                             <h4>Nhập lại Mật Khẩu <span className="text-red-600 ml-1">*</span></h4>
                             <div className="relative mb-4 w-full h-12 mt-2">
                                 <input  type="password" name="confirm_password" id="confirm_password"
@@ -124,7 +124,7 @@ export default function RegisterPage({
                             </div>
                         </div>
                         <div className="flex flex-col items-center mb-6 w-full">
-                            <input type="submit" value="Đăng ký" className="btn w-full text-white bg-red-600 hover:bg-gray-900 px-5 tracking-wider py-2 mt-2.5 rounded" />
+                            <input type="submit" value="Đăng ký" className="btn w-full btn-hover-effect-1 text-white tracking-wider py-3 text-18 mt-3 rounded" />
                             <p className="text-gray-500 text-15 mt-4">Nếu bạn đã đăng ký tài khoản, vui lòng đăng nhập <Link href="/login"><a className="text-red-600 hover:underline font-semibold">Tại Đây.</a></Link></p>
                         </div>
 

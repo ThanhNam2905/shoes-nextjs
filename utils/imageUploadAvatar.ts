@@ -1,7 +1,5 @@
 
-
-export const imageUpload = async (image) => {
-    // console.log(image);
+export const imageUploadAvatar = async (image) => {
     const imgArr = [];
     const formData = new FormData();
     formData.append("file", image);
@@ -14,7 +12,6 @@ export const imageUpload = async (image) => {
     });
 
     const data = await res.json();
-    // console.log(data);
     imgArr.push({ public_id: data.public_id, url: data.secure_url });
     return imgArr;
 };

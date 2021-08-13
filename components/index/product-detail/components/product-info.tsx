@@ -35,7 +35,7 @@ export default function ProductInfo({ product }: PropsType) {
             return " btn btn--size active";
         }
         else {
-            return " btn btn--size hover:border-blue-500 hover:text-blue-500";
+            return " btn btn--size";
         }
     }
 
@@ -153,7 +153,7 @@ export default function ProductInfo({ product }: PropsType) {
                                     <ProductQuantity quantity={quantity} setQuantity={setQuantity} inStock={product.inStock}/>
                                 </div>
                                 
-                                <button className="btn btn--add-to-cart mx-8 text-14 flex items-center opacity-80 hover:opacity-100 hover:underline" 
+                                <button className="btn btn--add-to-cart mx-8 flex items-center justify-center hover:underline" 
                                         onClick={() => AddProductToCart()}>
                                         <AiOutlineShoppingCart className="text-18 mr-2"/>
                                         <span>Thêm vào giỏ hàng</span>

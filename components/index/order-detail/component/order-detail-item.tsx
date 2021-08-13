@@ -1,10 +1,8 @@
 
-
 type PropsType = {
     [x: string]: any;
     data: any;
 }
-
 
 export default function OrderDetailItem({ data }: PropsType) {
     return (

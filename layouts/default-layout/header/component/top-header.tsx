@@ -1,10 +1,3 @@
-// React Icon
-import {
-  AiOutlineClose, AiOutlineMail,
-  AiOutlineShoppingCart, AiOutlineBell, AiOutlineLogout,
-  AiOutlineUser, AiOutlineEdit
-} from "react-icons/ai";
-
 //NextJS
 import { useRouter } from 'next/router';
 import Link from "next/link";
@@ -12,10 +5,13 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { DataContext } from "../../../../store/GlobalState";// Global State
 import Cookie from 'js-cookie'; // Cookie
 
-
 // Andt Design
 import 'antd/dist/antd.css';
 import { Button, message } from 'antd';
+import { 
+  EditOutlined, UserOutlined, CloseCircleOutlined, MailOutlined,
+  ShoppingCartOutlined, BellOutlined, LogoutOutlined
+} from '@ant-design/icons';
 
 import Dialog from "../../../../components/shared/utilities/dialog/dialog";
 import FormUpdatePassword from "./FormUpdatePassword";
@@ -115,7 +111,7 @@ export default function TopHeader(props) {
                   target={dialogRef}>
                   <div className="flex items-center justify-between py-0 px-6 border-b border-gray-200 mb-2">
                     <p className="text-gray-900 text-16 mt-2 font-semibold">Thông tin tài khoản</p>
-                    <i className="text-2xl cursor-pointer hover:text-red-600" onClick={() => handlerCloseDialog()}><AiOutlineClose /></i>
+                    <i className="text-2xl cursor-pointer hover:text-red-600" onClick={() => handlerCloseDialog()}><CloseCircleOutlined /></i>
                   </div>
 
                   <div className="flex flex-col items-center justify-center">
@@ -130,24 +126,24 @@ export default function TopHeader(props) {
                     
 
                     <div className="grid grid-cols-8 w-full px-8 mt-5">
-                      <i className="col-span-1"><AiOutlineMail className="text-20 mt-0.5" /></i>
+                      <i className="col-span-1"><MailOutlined className="text-20 mt-0.5" /></i>
                       <span className="col-span-7 text-16 font-semibold">{auth.user?.email}</span>
                     </div>
 
                     <div className="grid grid-cols-8 w-full px-8 mt-5">
-                      <i className="col-span-1"><AiOutlineShoppingCart className="text-20 mt-0.5" /></i>
+                      <i className="col-span-1"><ShoppingCartOutlined className="text-20 mt-0.5" /></i>
                       <Link href="/order">
                         <a className="col-span-7 text-16 font-semibold text-gray-900 hover:underline" onClick={() => handlerCloseDialog()}>Lịch sử đơn hàng</a>
                       </Link>  
                     </div>
 
                     <div className="grid grid-cols-8 w-full px-8 mt-5">
-                      <i className="col-span-1"><AiOutlineBell className="text-20 mt-0.5" /></i>
+                      <i className="col-span-1"><BellOutlined className="text-20 mt-0.5" /></i>
                       <span className="col-span-7 text-16 font-semibold">Thông báo</span>
                     </div>
 
                     <div className="grid grid-cols-8 w-full px-8 mt-5 text-red-600 hover:underline">
-                      <i className="col-span-1"><AiOutlineLogout className="text-20 mt-0.5" /></i>
+                      <i className="col-span-1"><LogoutOutlined className="text-20 mt-0.5" /></i>
                       <span className="col-span-7 text-16 font-semibold cursor-pointer" onClick={() => handlerLogout()}>Đăng xuất</span>
                     </div>
                     <div className="w-full px-8 mt-5">
@@ -173,7 +169,7 @@ export default function TopHeader(props) {
               <li className="hover:text-red-600 hover:underline">
                 <Link href="/register">
                   <a className={`flex items-center space-x-1 border-r-2 border-gray-300 pr-3 -ml-3 text-gray-900 ${router.pathname === '/register' ? "text-red-600" : ""}`}>
-                    <AiOutlineEdit className="text-16" />
+                    <EditOutlined className="text-16" />
                     <span className="font-semibold">Đăng ký</span>
                   </a>
                 </Link>
@@ -181,7 +177,7 @@ export default function TopHeader(props) {
               <li className="flex items-center space-x-1 hover:text-red-600 hover:underline">
                 <Link href="/login">
                   <a className={`flex items-center space-x-1 text-gray-900 ${router.pathname === '/login' ? "text-red-600" : ""}`}>
-                    <AiOutlineUser className="text-16 -ml-3" />
+                    <UserOutlined className="text-16 -ml-3" />
                     <span className="font-semibold">Đăng nhập</span>
                   </a>
                 </Link>

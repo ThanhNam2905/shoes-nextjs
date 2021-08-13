@@ -1,5 +1,7 @@
 /* CSS Admin-Layout */
 @import "../../../layouts/admin-layout/style.css"; 
+@import "../../../components/admin/style.css";
+@import "../../../layouts/default-layout/style.css";
 
 /* About Content */
 .about-content:hover img {

@@ -7,7 +7,7 @@ export const DataContext = createContext();
 
 export const DataProvider = ({children}) => {
 
-    const initialState = { auth: {}, cart: [], modal: {}, orders: [] };
+    const initialState = { auth: {}, cart: [], orders: [], users: [], categories: [] };
     const [ state, dispatch ] = useReducer(reducers, initialState);
     const { cart, auth } = state;
 
@@ -25,6 +25,15 @@ export const DataProvider = ({children}) => {
                         token: res.access_token,
                         user: res.user
                     }
+                })
+            });
+            getData('category').then(res => {
+                if(res.err) {
+                    message.error(res.err);
+                }
+                dispatch({ 
+                    type: "ADD_CATEGORIES",
+                    payload: res.categories
                 })
             });
         }
@@ -46,12 +55,26 @@ export const DataProvider = ({children}) => {
         if(auth.token) {
             getData('order', auth.token)
             .then(res => {
-                // console.log(res);
                 if(res.error) {
                     message.error(res.error);
                 }
                 dispatch({ type: "ADD_ORDERS", payload: res.orders});
             })
+
+            // Get Users
+            if(auth.user.role === "admin") {
+                getData('user', auth.token)
+                .then(res => {
+                    if(res.error) {
+                        message.error(res.error);
+                    }
+                    dispatch({ type: "ADD_USERS", payload: res.users});
+                })
+            }
+        }
+        else {
+            dispatch({ type: "ADD_ORDERS", payload: []});
+            dispatch({ type: "ADD_USERS", payload: []});
         }
     }, [auth.token]);
 
