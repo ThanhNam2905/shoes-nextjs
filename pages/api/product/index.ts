@@ -14,11 +14,53 @@ export default async (req, res) => {
             break;
     }
 }
+class APIFeatures {
+    query: any; 
+    queryString: any;
+    constructor(query: any, queryString: any) {
+        this.query = query;
+        this.queryString = queryString;
+    }
+    filtering() {
+        const queryObj = {...this.queryString};
+
+        const excludeFields = ['page', 'sort', 'limit'];
+        excludeFields.forEach(element => delete(queryObj[element]));
+
+        if(queryObj.category !== 'all') {
+            this.query.find({ category: queryObj.category });
+        }
+        if(queryObj.name !== 'all') {
+            this.query.find({ name: {$regex: queryObj.name }})
+        }
+        this.query.find();
+        return this;
+    }
+    sorting() {
+        if(this.queryString.sort) {
+            const sortBy = this.queryString.sort.split(',').join('');
+            this.query = this.query.sort(sortBy);
+        }
+        else {
+            this.query = this.query.sort('-createdAt');
+        }
+        return this;
+    }
+    paginating() {
+        const page = this.queryString.page * 1 || 1;
+        const limit = this.queryString.limit * 1 || 8;
+        const skip = (page - 1) * limit;
+        this.query = this.query.skip(skip).limit(limit);
+        return this;
+    }
+}
 
 const getProducts = async (req, res) => {
     try {
-        const products = await Products.find();
-
+        const features = new APIFeatures(Products.find(), req.query).filtering().sorting().paginating();
+        const products = await features.query;
+        // console.log(req.query);
+        
         res.json({
             status: 'success',
             result: products.length,
@@ -61,3 +103,4 @@ const createProduct = async (req, res) => {
         return res.status(500).json({error: error.message});
     }
 }
+

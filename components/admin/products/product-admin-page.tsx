@@ -1,6 +1,6 @@
 // Ant Design
 import { Button, Table, Tag, Image, Popconfirm, Tooltip, message, notification } from 'antd';
-import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
+import { DeleteOutlined, EditOutlined, SmallDashOutlined } from '@ant-design/icons';
 
 import { useState, useContext } from 'react';
 import Link from 'next/link';
@@ -20,7 +20,7 @@ export default function ProductAdminPage({ products }: PropsType) {
 
     // Antd Component Table, Image
     const [loading, setLoading] = useState(false);
-    const [visible, setVisible] = useState(false);
+    const [visible, setVisible] = useState(null);
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
     const start = () => {
         setLoading(true);
@@ -86,7 +86,7 @@ export default function ProductAdminPage({ products }: PropsType) {
             dataIndex: "name",
             key: 'name',
             align: 'center' as 'center',
-            width: 80,
+            width: 60,
             render: (text) => <Tag color="blue">{text}</Tag>
         },
         {
@@ -103,16 +103,16 @@ export default function ProductAdminPage({ products }: PropsType) {
             key: 'images',
             align: 'center' as 'center',
             width: 100,
-            render: (images) => (
+            render: (images, index) => (
                 <>
                     <Image
-                        preview={{ visible: false }}
+                        preview={{ visible: visible === index.key ? true : null }}
                         width={100}
                         src={images[0].url}
-                        onClick={() => setVisible(true)}
+                        onClick={() => setVisible(index.key)}
                     />
                     <div style={{ display: 'none' }}>
-                        <Image.PreviewGroup preview={{ visible, onVisibleChange: vis => setVisible(vis) }}>
+                        <Image.PreviewGroup preview={{ visible : visible === index.key ? true : null, onVisibleChange: vis => setVisible(vis) }}>
                             {
                                 images.length > 0 && 
                                     images.map((img, index) =>(
@@ -166,10 +166,10 @@ export default function ProductAdminPage({ products }: PropsType) {
             title: 'Action',
             key: 'action',
             align: 'center' as 'center',
-            width: 80,
+            width: 100,
             render: (index) => 
-                <div className="flex items-center justify-center space-x-6 text-red-600">
-                        <Link href={`/admin/products/edit-product/${index.id}`}>
+                <div className="flex items-center justify-center space-x-4 text-red-600">
+                    <Link href={`/admin/products/edit-product/${index.id}`}>
                             <Tooltip placement="bottom" title="Edit Product">
                                 <i className="text-blue-600 cursor-pointer mb-1">
                                     <EditOutlined className="text-18"/>
@@ -177,6 +177,13 @@ export default function ProductAdminPage({ products }: PropsType) {
                             </Tooltip>
                         </Link>
                     
+                    
+                    <Tooltip placement="bottom" title="Detail Product">
+                        <i className="text-blue-600 cursor-pointer mb-1">
+                            <SmallDashOutlined className="text-18"/>
+                        </i>
+                    </Tooltip>
+
                     <Popconfirm title="Bạn có muốn xoá tài khoản này hay không？" 
                                 visible={index.key === indexProduct ? visibleProduct : null}
                                 okButtonProps={{ loading: confirmLoading }}
@@ -248,6 +255,7 @@ export default function ProductAdminPage({ products }: PropsType) {
                         columns={columns}
                         dataSource={dataList}
                         bordered={true} 
+                        scroll={{x: 1000}}
                     />
                 </div>
             </div>
