@@ -1,10 +1,12 @@
 import Head from "next/head";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { BiChevronDown } from "react-icons/bi";
 import Breadcrumbs from "../../shared/utilities/breadcrumbs/breadcrumbs";
-import PaginationComponent from "../../shared/utilities/pagination/pagination-component";
 import { ScrollToTopBtn } from "../../shared/utilities/scrollToTop/scrollToTop";
 import ProductItem from "./components/productItem";
+import { Pagination } from 'antd';
+import filterSearch from '../../../utils/filterSearch';
+import { useRouter } from 'next/router';
 
 type PropsType = {
     [x: string]: any;
@@ -14,6 +16,9 @@ type PropsType = {
 export default function ProductPage({ products }: PropsType) {
 
     const [breadcrumbs, setBreadcrumbs] = useState([]);
+    const [page, setPage] = useState(1);
+    const router = useRouter();
+    const refBtnLoadMore = useRef(null);
 
     useEffect(() => {
         if(products) {
@@ -23,7 +28,34 @@ export default function ProductPage({ products }: PropsType) {
             ])
         }
     }, [products]);
+
+    useEffect(() => {
+        if(Object.keys(router.query).length === 0) {
+            setPage(1);
+        }
+        else {
+            setPage(Number(router.query.page));
+        }
+    }, [router.query]);
+
+    // const handleChangePage = (page, pageSize) => {
+    //     console.log("page " + page);
+    //     console.log("PageSize " + pageSize);
+        
+    // }
+
+    const handleClickLoadMore = () => {
+        refBtnLoadMore.current.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+            inline: "center"
+        });
+        setPage(page + 1);
+        filterSearch({router, page: page + 1});
+        
+    }
     
+   
     return (
         <>
             <Head>
@@ -66,12 +98,25 @@ export default function ProductPage({ products }: PropsType) {
                             )
                         ) : "Không có sản phẩm"
                     }
-                    
                 </div>
+
+                {/* Load More */}
+                <div className="flex justify-center" >
+                    {
+                        products.length < page * 8 ? "" 
+                        : (
+                            <button ref={refBtnLoadMore}  className="btn__load--more" onClick={handleClickLoadMore}>Load More</button>
+                        )
+
+                    }
+                </div>
+                
             </div>
 
-            {/* Pagination */}
-            <PaginationComponent limit={10} page={1} total={100}/>
+
+            {/* Pagination
+            <Pagination defaultCurrent={1} pageSize={10} total={products.length} onChange={handleChangePage}/> */}
+
 
         </>
     )

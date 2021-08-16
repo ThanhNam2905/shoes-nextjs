@@ -2,7 +2,6 @@ import { data } from '../data/data';
 import { Select, Form, Input, Button, Radio, message, notification } from 'antd';
 import { useContext, useEffect, useState } from 'react';
 import { DataContext } from '../../../../store/GlobalState';
-import PaypalBtn from './PaypalBtn';
 import { getData, postData } from '../../../../utils/fetchData';
 import { useRouter } from 'next/router';
 
@@ -59,7 +58,6 @@ export default function FormOrder({ totalPrice }: PropsType) {
         await setWards(value)
     }
 
-    const [payment, setPayment] = useState(false);
     const [cartPayment, setCartPayment] = useState({
         address: "",
         name: "",
@@ -319,19 +317,9 @@ export default function FormOrder({ totalPrice }: PropsType) {
                         },
                     ]}
                 >   
-                    {   payment ? <PaypalBtn    total={totalPrice} 
-                                                address={cartPayment.address}
-                                                phone={cartPayment.phone}
-                                                cart={cartPayment.cart}
-                                                state={state}
-                                                dispatch={dispatch}/> 
-                            :   (
-                            <Radio.Group onChange={onChange} value={valueRadio}>
-                                <Radio value={1}>Thanh toán khi nhận hàng</Radio>
-                                <Radio value={2} onClick={() => setPayment(true)}>Thanh toán qua Ví Paypal</Radio>
-                            </Radio.Group>
-                        )
-                    }
+                    <Radio.Group onChange={onChange} value={valueRadio}>
+                        <Radio value={1}>Thanh toán khi nhận hàng</Radio>
+                    </Radio.Group>
                 </Form.Item>
 
                 <Form.Item>

@@ -1,13 +1,9 @@
 import { useContext, useState } from "react";
 import { FcShipped } from "react-icons/fc"; // React Icon
 import { AiOutlineShoppingCart, AiOutlineStar } from "react-icons/ai"; // React Icon
-import { Swiper, SwiperSlide } from 'swiper/react'; // Import Swiper React components
-import 'swiper/swiper-bundle.min.css'; // Import Swiper styles
-import SwiperCore, { Navigation, Pagination } from 'swiper'; // import Swiper core and required modules
 import { DataContext } from "../../../../store/GlobalState";
 import { addToCart } from "../../../../store/Actions";
 import ProductQuantity from "../../../shared/product/product-quantity";
-SwiperCore.use([Navigation, Pagination]); // install Swiper modules
 import { message } from 'antd'; // Ant Design
 
 type PropsType = {
